@@ -9,8 +9,8 @@ import { MongooseModule } from '@nestjs/mongoose';
     providers: [MasseuseCommentRepository, MasseuseCommentService],
     controllers: [MasseuseCommentController],
     imports: [MongooseModule.forFeature([
-		{ name: MasseuseComment.name, schema: MasseuseCommentSchema }
-	])]
+		  { name: MasseuseComment.name, schema: MasseuseCommentSchema }
+	  ])]
 })
 export class MasseuseCommentModule {
 

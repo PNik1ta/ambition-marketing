@@ -3,4 +3,5 @@ export interface INewsComments {
     fromUser: string;
     newsId: string;
     comment: string;
+    commentsCount: number;
 }
