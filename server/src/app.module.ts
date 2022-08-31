@@ -1,3 +1,4 @@
+import { MasseuseModule } from './masseuse/masseuse.module';
 import { RatingModule } from './rating/rating.module';
 import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
@@ -15,6 +16,7 @@ import { AtGuard } from './shared/guards/at.guard';
     AccountModule,
     AuthModule, 
     RatingModule,
+    MasseuseModule,
     ConfigModule.forRoot({isGlobal: true, envFilePath: '.env'}),
 		MongooseModule.forRootAsync(getMongoConfig())
   ],

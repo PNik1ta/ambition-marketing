@@ -14,8 +14,8 @@ export class RatingService {
     ) {}
 
     async rate(dto: RateDto): Promise<BaseResponse<Account>> {
-        const fromAccount = await this.accountRepository.findAccountById(dto.fromUser);
-        const toAccount = await this.accountRepository.findAccountById(dto.toUser);
+        const fromAccount = await this.accountRepository.findById(dto.fromUser);
+        const toAccount = await this.accountRepository.findById(dto.toUser);
 
         const fromAccountEntity = new AccountEntity(fromAccount);
         fromAccountEntity.addUser(dto.toUser);
@@ -23,8 +23,8 @@ export class RatingService {
         const toAccountEntity = new AccountEntity(toAccount);
         toAccountEntity.updateRating(dto.rating);
 
-        await this.accountRepository.updateAccount(toAccountEntity);
-        await this.accountRepository.updateAccount(fromAccountEntity);
+        await this.accountRepository.update(toAccountEntity);
+        await this.accountRepository.update(fromAccountEntity);
 
         return new BaseResponse<Account>(RATING_CREATE);
     }

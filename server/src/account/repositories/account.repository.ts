@@ -10,7 +10,7 @@ export class AccountRepository {
         @InjectModel(Account.name) private readonly accountModel: Model<Account>
     ) { }
 
-    async createAccount(account: AccountEntity): Promise<Account> {
+    async create(account: AccountEntity): Promise<Account> {
         const newAccount = new this.accountModel(account);
         return newAccount.save();
     }
@@ -19,19 +19,19 @@ export class AccountRepository {
         return this.accountModel.find().exec();
     }
 
-    async findAccountByEmail(email: string): Promise<Account> {
+    async findByEmail(email: string): Promise<Account> {
 		return this.accountModel.findOne({ email }).exec();
 	}
 
-	async findAccountById(id: string): Promise<Account> {
+	async findById(id: string): Promise<Account> {
 		return this.accountModel.findById(id).exec();
 	}
 
-	async deleteAccount(email: string): Promise<void> {
+	async delete(email: string): Promise<void> {
 	 	this.accountModel.deleteOne({ email }).exec();
 	}
 
-	async updateAccount({ _id, ...rest }: AccountEntity) {
+	async update({ _id, ...rest }: AccountEntity) {
 		return this.accountModel.updateOne({ _id }, { $set: { ...rest } }).exec();
 	}
 
