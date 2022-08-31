@@ -13,6 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { getMongoConfig } from './configs/mongo.config';
 import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from './shared/guards/at.guard';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AtGuard } from './shared/guards/at.guard';
     MassageModule,
     NewsModule,
     NewsCommentModule,
+    FilesModule,
     ConfigModule.forRoot({isGlobal: true, envFilePath: '.env'}),
 		MongooseModule.forRootAsync(getMongoConfig())
   ],
