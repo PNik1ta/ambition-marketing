@@ -1,3 +1,4 @@
+import { MassageModule } from './massage/massage.module';
 import { MasseuseCommentModule } from './masseuseComment/masseuseComment.module';
 import { MasseuseModule } from './masseuse/masseuse.module';
 import { RatingModule } from './rating/rating.module';
@@ -19,6 +20,7 @@ import { AtGuard } from './shared/guards/at.guard';
     RatingModule,
     MasseuseModule,
     MasseuseCommentModule,
+    MassageModule,
     ConfigModule.forRoot({isGlobal: true, envFilePath: '.env'}),
 		MongooseModule.forRootAsync(getMongoConfig())
   ],

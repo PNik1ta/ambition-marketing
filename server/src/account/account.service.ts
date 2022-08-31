@@ -46,7 +46,7 @@ export class AccountService {
 	}
 
 	async findAccountByEmail(email: string): Promise<Account> {
-		const account = this.accountRepository.findByEmail(email);
+		const account = await this.accountRepository.findByEmail(email);
 
 		if (!account) {
 			throw new Error(ACCOUNT_FIND_ERROR);
@@ -56,7 +56,7 @@ export class AccountService {
 	}
 
 	async findAccountById(id: string): Promise<Account> {
-		const account = this.accountRepository.findById(id);
+		const account = await this.accountRepository.findById(id);
 		if (!account) {
 			throw new Error(ACCOUNT_FIND_ERROR);
 		}
