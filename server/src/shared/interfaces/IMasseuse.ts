@@ -3,4 +3,5 @@ export interface IMasseuse {
     prices: string;
     photos: string[];
     userId: string;
+    commentsCount: number;
 }

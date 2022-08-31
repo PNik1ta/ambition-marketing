@@ -19,6 +19,7 @@ export class MasseuseService {
             photos: dto.photos,
             prices: dto.prices,
             userId: dto.userId,
+            commentsCount: 0
         });
 
         const createdMasseuse = await this.masseuseRepository.create(masseuse);
