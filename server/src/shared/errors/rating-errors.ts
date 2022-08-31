@@ -1,0 +1,1 @@
+export const RATING_CREATE_ERROR = "Couldn't rate";
