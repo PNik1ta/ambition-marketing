@@ -1,0 +1,22 @@
+<header>
+	<nav>
+		<div class="nav-wrapper">
+			<a routerLink="main" class="branch-logo">Ambition marketing</a>
+			<a (click)="openSidenav()" data-target="mobile-demo" class="sidenav-trigger">
+        <img src="/assets/icons/menu.svg" alt="menu"/>
+			</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li routerLinkActive="active"><a routerLink="accounts">Accounts</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<ul #sidenav class="sidenav" id="mobile-demo">
+		<li routerLinkActive="active"><a routerLink="accounts">Accounts</a></li>
+	</ul>
+</header>
+<!--HEADER-->
+<main>
+	<router-outlet></router-outlet>
+</main>
