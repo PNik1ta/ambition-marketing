@@ -22,7 +22,7 @@ export class AdminLayoutComponent implements AfterViewInit {
 	exit() {
 		MaterialService.toast('You logged out');
 		this.authService.logout();
-		this.router.navigate(['/admin/login']);
+		this.router.navigate(['/admin']);
 	}
 
 	openSidenav(): void {

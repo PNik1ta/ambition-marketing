@@ -1,0 +1,55 @@
+.delete {
+	i {
+		float: right;
+		color: #26a69a;
+		cursor: pointer;
+		transition: all 0.3s ease 0s;
+		&:hover {
+			color: #f76969;
+		}
+	}
+}
+
+.btn-yellow {
+	color: #fff;
+	background-color: #ffc107;
+	&:hover {
+		background-color: #d6a103;
+	}
+}
+
+main {
+	padding: 20px;
+}
+
+nav {
+	padding: 0 20px;
+	margin-bottom: 20px;
+	background-color: #7952b3;
+}
+
+.right-btn {
+	float: right;
+}
+
+.table-container {
+	width: 100%;
+	overflow: auto;
+	table {
+		width: 100%;
+		overflow: hidden;
+	}
+}
+
+@media (max-width: 730px) {
+	button {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+	.delete {
+		i {
+			float: left;
+		}
+	}
+}

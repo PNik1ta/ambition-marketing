@@ -1,0 +1,18 @@
+main {
+  min-height: 100%;
+  background-color: #dedede;
+  .login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    min-width: 500px;
+    height: fit-content;
+    border-radius: 15px;
+    padding: 20px;
+
+    background-color: #fff;
+
+  }
+}

@@ -1,0 +1,98 @@
+<!--BREADCRUMBS-->
+<nav>
+	<div class="nav-wrapper">
+		<a routerLink="main" class="breadcrumb">Admin</a>
+		<a routerLink="accounts" class="breadcrumb">Accounts</a>
+	</div>
+</nav>
+<!--BREADCRUMBS-->
+
+<button class="waves-effect waves-light btn modal-trigger btn-yellow right-btn" (click)="openAddModal()">Add
+	account</button>
+<!--TABLE-->
+<div *ngIf="accounts$ | async as accounts; else loader">
+	<div class="table-container">
+		<table class="highlight" *ngIf="accounts.length !== 0; else empty">
+			<thead>
+				<th>#</th>
+				<th>Email</th>
+				<th>Username</th>
+        <th>Role</th>
+				<th></th>
+			</thead>
+
+			<tbody>
+				<tr *ngFor="let account of accounts; let i = index;">
+					<td>{{i + 1}}</td>
+					<td>{{account.email}}</td>
+					<td>{{account.username}}</td>
+          <td>{{account.role}}</td>
+					<td class="delete"><i class="material-icons" (click)="removeAccount(account.email!)">delete</i></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<ng-template #empty>
+		<h5 class="center">No accounts there...</h5>
+	</ng-template>
+</div>
+
+<ng-template #loader>
+	<app-loader></app-loader>
+</ng-template>
+<!--TABLE-->
+
+
+<form #addModal class="modal" [formGroup]="addForm" (ngSubmit)="addAccount()">
+	<div class="modal-content">
+		<h4>Add account</h4>
+		<div class="input-field">
+			<input formControlName="email" id="email" type="email" class="validate"
+				[ngClass]="{'invalid': Email!.invalid && Email!.touched}">
+			<label for="email">Email</label>
+			<span class="helper-text red-text" *ngIf="Email?.invalid && Email?.touched">
+				<span *ngIf="Email?.hasError('required')">Email can't be empty</span>
+				<span *ngIf="Email?.hasError('email')">Enter correct email</span>
+			</span>
+		</div>
+
+		<div class="input-field">
+			<input formControlName="password" id="password" type="password" class="validate"
+				[ngClass]="{'invalid': Password?.invalid && Password?.touched }">
+			<label for="password">Password</label>
+			<span class="helper-text red-text"
+				*ngIf="Password?.invalid && Password?.touched">
+				<span *ngIf="Password?.hasError('required')">Password can't be empty</span>
+				<span *ngIf="Password?.hasError('minLength')">Password can't be less than 4 symbols</span>
+			</span>
+		</div>
+
+    <div class="input-field">
+			<input formControlName="username" id="username" type="text" class="validate"
+				[ngClass]="{'invalid': Username?.invalid && Username?.touched }">
+			<label for="username">Username</label>
+			<span class="helper-text red-text"
+				*ngIf="Username?.invalid && Username?.touched">
+				<span *ngIf="Username?.hasError('required')">Username can't be empty</span>
+			</span>
+		</div>
+
+    <div class="input-field">
+      <select #roleSelect formControlName="role">
+        <option value="" disabled selected>Choose role</option>
+        <option value="user">User</option>
+        <option value="masseuse">Masseuse</option>
+        <option value="admin">Admin</option>
+      </select>
+      <label>Role</label>
+    </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" (click)="closeAddModal()" [disabled]="addForm.disabled"
+			class="modal-close waves-effect waves-green btn-flat">Close</button>
+		<button type="submit" [disabled]="addForm.disabled || addForm.invalid"
+			class="modal-close waves-effect waves-green btn btn-yellow">Save</button>
+	</div>
+</form>
