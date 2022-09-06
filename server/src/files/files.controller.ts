@@ -16,7 +16,6 @@ export class FilesController {
 	@UseGuards(AtGuard)
 	@UseInterceptors(FileInterceptor('files'))
 	async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<FileElementResponse[]> {
-        console.log(file);
 		const saveArray: MFile[] = [new MFile(file)];
 
 		if (file.mimetype.includes('image')) {

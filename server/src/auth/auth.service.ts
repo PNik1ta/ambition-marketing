@@ -1,3 +1,4 @@
+import { Role } from './../shared/enums/Role';
 import { AccountEntity } from './../account/entities/account.entity';
 import { CreateAccountDto } from './../account/dto/create-account.dto';
 import { Tokens } from './../shared/types/token.type';
@@ -17,18 +18,20 @@ export class AuthService {
 		private accountRepository: AccountRepository
 	) { }
 
-	async getTokens(accountId: string, email: string): Promise<Tokens> {
+	async getTokens(accountId: string, email: string, role: string): Promise<Tokens> {
 		const [at, rt] = await Promise.all([
 			this.jwtService.signAsync({
 				sub: accountId,
-				email
+				email,
+				role
 			}, {
 				secret: 'at-secret',
 				expiresIn: 60 * 30
 			}),
 			this.jwtService.signAsync({
 				sub: accountId,
-				email
+				email,
+				role
 			}, {
 				secret: 'rt-secret',
 				expiresIn: 60 * 60 * 24 * 7,
@@ -44,7 +47,7 @@ export class AuthService {
 	async register(accountDto: CreateAccountDto): Promise<Tokens> {
 		const newAccount = await this.accountService.createAccount(accountDto);
 
-		const tokens = await this.getTokens(newAccount.data.id, newAccount.data.email);
+		const tokens = await this.getTokens(newAccount.data.id, newAccount.data.email, newAccount.data.role);
 		await this.updateRtHash(newAccount.data.id, tokens.refresh_token);
 		return tokens;
 	}
@@ -58,7 +61,7 @@ export class AuthService {
 			throw new ForbiddenException(ACCOUNT_INCORRECT_PASSWORD_ERROR);
 		}
 
-		const tokens = await this.getTokens(account.id, account.email);
+		const tokens = await this.getTokens(account.id, account.email, account.role);
 		await this.updateRtHash(account.id, tokens.refresh_token);
 		return tokens;
 	}
@@ -75,7 +78,7 @@ export class AuthService {
 			throw new ForbiddenException(ACCOUNT_INCORRECT_RT_ERROR);
 		}
 
-		const tokens = await this.getTokens(account.id, account.email);
+		const tokens = await this.getTokens(account.id, account.email, account.role);
 		await this.updateRtHash(account.id, tokens.refresh_token);
 		return tokens;
 	}

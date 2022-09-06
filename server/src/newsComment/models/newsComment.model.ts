@@ -1,9 +1,9 @@
-import { INewsComments } from '../../shared/interfaces/INewsComments';
+import { INewsComment } from '../../shared/interfaces/INewsComment';
 import { Document } from "mongoose";
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema()
-export class NewsComment extends Document implements INewsComments {
+export class NewsComment extends Document implements INewsComment {
     @Prop({required: true})
     fromUser: string;
 

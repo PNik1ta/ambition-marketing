@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { Role } from './../../shared/enums/Role';
+import { IsEmail, IsEnum, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateAccountDto {
 	@IsNotEmpty()
@@ -13,4 +14,7 @@ export class CreateAccountDto {
 	@IsNotEmpty()
 	@IsString()
 	username: string;
+
+	@IsEnum(Role)
+	role?: Role;
 }

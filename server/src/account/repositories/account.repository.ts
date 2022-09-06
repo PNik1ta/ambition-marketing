@@ -29,6 +29,7 @@ export class AccountRepository {
 
 	async delete(email: string): Promise<void> {
 	 	this.accountModel.deleteOne({ email }).exec();
+
 	}
 
 	async update({ _id, ...rest }: AccountEntity) {

@@ -24,7 +24,7 @@ export class AccountService {
             age: 18,
             fullname: '',
             rating: 0,
-            role: Role.USER,
+            role: dto.role ?? Role.USER,
 			ratesCount: 0
 		}).setPassword(dto.password);
 
@@ -63,8 +63,8 @@ export class AccountService {
 		return account;
 	}
 
-	async deleteAccount(id: string): Promise<BaseResponse<Account>> {
-		this.accountRepository.delete(id);
+	async deleteAccount(email: string): Promise<BaseResponse<Account>> {
+		this.accountRepository.delete(email);
 		return new BaseResponse<Account>(ACCOUNT_DELETED);
 	}
 
