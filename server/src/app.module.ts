@@ -24,11 +24,12 @@ import { FilesModule } from './files/files.module';
     MasseuseModule,
     MasseuseCommentModule,
     MassageModule,
+    MongooseModule.forRootAsync(getMongoConfig()),
     NewsModule,
     NewsCommentModule,
     FilesModule,
     ConfigModule.forRoot({isGlobal: true, envFilePath: '.env'}),
-		MongooseModule.forRootAsync(getMongoConfig())
+
   ],
   controllers: [],
   providers: [{ provide: APP_GUARD, useClass: AtGuard }],
