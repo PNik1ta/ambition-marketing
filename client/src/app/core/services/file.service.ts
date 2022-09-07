@@ -11,7 +11,7 @@ export class FileService {
 
   upload(image: File): Observable<IFileElementResponse[]> {
     const fd = new FormData();
-    fd.append('image', image);
+    fd.append('files', image);
     let url: string = '/api/files/upload';
     return this.http.post<IFileElementResponse[]>(url, fd);
   }

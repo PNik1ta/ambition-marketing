@@ -1,0 +1,89 @@
+main {
+	padding: 20px;
+}
+
+nav {
+	padding: 0 20px;
+	margin-bottom: 20px;
+	background-color: #7952b3;
+}
+
+button {
+	float: right;
+}
+
+.btn-yellow {
+	color: #fff;
+	background-color: #ffc107;
+	&:hover {
+		background-color: #d6a103;
+	}
+}
+
+.massage-info {
+	padding: 0 100px;
+
+	.image {
+		width: 700px;
+		height: 500px;
+    margin: 0 auto;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.content {
+		h1 {
+      text-align: center;
+			font-size: 42px;
+      margin-top: 20px;
+			span {
+				font-weight: 700;
+				color: #990000;
+			}
+		}
+
+    p {
+      line-height: 1.5;
+      color: #777;
+    }
+	}
+}
+
+@media (max-width: 1300px) {
+	.massage-info {
+		.image {
+			margin-left: 0;
+		}
+	}
+}
+
+@media (max-width: 1030px) {
+	.massage-info {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+@media (max-width: 767px) {
+	.massage-info {
+		padding: 0;
+		.content {
+			h3 {
+				font-size: 30px;
+			}
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	.massage-info {
+		.image {
+			width: 250px;
+			height: 250px;
+		}
+	}
+}

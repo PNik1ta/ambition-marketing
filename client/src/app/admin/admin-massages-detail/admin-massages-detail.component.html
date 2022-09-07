@@ -1,0 +1,26 @@
+<!--BREADCRUMBS-->
+<nav>
+	<div class="nav-wrapper">
+		<a routerLink="main" class="breadcrumb">Admin</a>
+		<a routerLink="../../massages" class="breadcrumb">Massages</a>
+		<a class="breadcrumb">Massage detail</a>
+	</div>
+</nav>
+<!--BREADCRUMBS-->
+
+
+<div *ngIf="massage$ | async as massage; else loader">
+	<div class="massage-info">
+		<div class="image">
+			<img [src]="'http://localhost:3000/static/' + massage.previewImg" alt="massage image">
+		</div>
+		<div class="content">
+			<h1>{{massage.name}}</h1>
+      <p>{{massage.description}}</p>
+		</div>
+	</div>
+</div>
+
+<ng-template #loader>
+	<app-loader></app-loader>
+</ng-template>
