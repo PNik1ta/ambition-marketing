@@ -1,0 +1,28 @@
+<!--BREADCRUMBS-->
+<nav>
+	<div class="nav-wrapper">
+		<a routerLink="main" class="breadcrumb">Admin</a>
+		<a routerLink="../../news" class="breadcrumb">News</a>
+		<a hrouterLink="../news-detail" class="breadcrumb">News detail</a>
+	</div>
+</nav>
+<!--BREADCRUMBS-->
+
+<div *ngIf="news$ | async as news; else loader">
+	<div class="news">
+		<div class="image">
+			<img [src]="'http://localhost:3000/static/' + news.previewImg" alt="worker example">
+		</div>
+
+		<div class="title">
+			<h1>{{news.title}}</h1>
+			<h5>{{news.date | date}}</h5>
+		</div>
+
+		<quill-view-html [content]="news.description"></quill-view-html>
+	</div>
+</div>
+
+<ng-template #loader>
+	<app-loader></app-loader>
+</ng-template>

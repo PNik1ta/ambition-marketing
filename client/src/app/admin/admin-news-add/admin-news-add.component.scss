@@ -1,0 +1,39 @@
+main {
+	padding: 20px;
+}
+
+nav {
+	padding: 0 20px;
+	margin-bottom: 20px;
+	background-color: #7952b3;
+}
+
+
+.btn-yellow {
+	color: #fff;
+	background-color: #ffc107;
+	&:hover {
+		background-color: #d6a103;
+	}
+}
+form {
+	padding: 20px 100px;
+}
+
+.save {
+	margin-top: 50px;
+	button {
+		margin: 0 auto;
+		text-align: center;
+		width: 100%;
+	}
+}
+
+.mt-20 {
+	margin-top: 20px;
+}
+@media (max-width: 500px) {
+	form {
+		padding: 20px 0;
+	}
+}

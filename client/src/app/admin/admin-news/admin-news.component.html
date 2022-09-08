@@ -1,0 +1,36 @@
+<!--BREADCRUMBS-->
+<nav>
+	<div class="nav-wrapper">
+		<a routerLink="main" class="breadcrumb">Admin</a>
+		<a routerLink="../news" class="breadcrumb">News</a>
+	</div>
+</nav>
+<!--BREADCRUMBS-->
+
+
+<button routerLink="./add" class="right-btn waves-effect waves-light btn modal-trigger btn-yellow">Add news</button>
+<!--COLLECTION-->
+<div *ngIf="news$ | async as news; else loader">
+	<div class="collection" *ngIf="news.length !== 0; else empty">
+		<div class="item" *ngFor="let item of news">
+			<a [routerLink]="['/admin/main/news', item._id]" class="collection-item collection-item-icon">
+				<span>
+					{{item.title}}
+				</span>
+			</a>
+			<div>
+				<i class="material-icons" (click)="deleteNews(item._id!)">delete</i>
+				<i class="material-icons" [routerLink]="['/admin/main/news/edit', item._id]">create</i>
+			</div>
+		</div>
+	</div>
+
+	<ng-template #empty>
+		<h5 class="center">No news here...</h5>
+	</ng-template>
+</div>
+<!--COLLECTION-->
+
+<ng-template #loader>
+	<app-loader></app-loader>
+</ng-template>

@@ -1,0 +1,43 @@
+<!--BREADCRUMBS-->
+<nav>
+	<div class="nav-wrapper">
+		<a routerLink="main" class="breadcrumb">Admin</a>
+		<a routerLink="../../news" class="breadcrumb">News</a>
+		<a routerLink="./" class="breadcrumb">Edit news</a>
+	</div>
+</nav>
+<!--BREADCRUMBS-->
+
+<form [formGroup]="changeForm" (ngSubmit)="changeNews()">
+	<div class="input-field">
+		<input formControlName="title" id="title" type="text" class="validate"
+			[ngClass]="{'invalid': Title!.invalid && Title!.touched}">
+		<label for="title">Title</label>
+		<span *ngIf="Title!.invalid && Title!.touched"
+			class="helper-text red-text">Title
+			can't
+			be empty</span>
+	</div>
+
+	<quill-editor formControlName="text"></quill-editor>
+	<span *ngIf="Text!.invalid && Text!.touched" class="helper-text red-text">Text
+		can't
+		be empty</span>
+
+	<div>
+		<input type="file" class="dn" (change)="onFileUpload($event)" #input>
+		<button [disabled]="changeForm.disabled" type="button" (click)="triggerClick()"
+			class="waves-effect waves-light btn mt-20 btn-yellow"><i class="material-icons left">cloud</i>Upload
+			image</button>
+	</div>
+
+	<div>
+		<img class="responsive-image h200" [src]="imagePreview" *ngIf="imagePreview" alt="image preview">
+	</div>
+
+	<div class="save">
+		<button type="submit" class="modal-close waves-effect waves-green btn btn-yellow"
+			[disabled]="changeForm.disabled || changeForm.invalid">Save</button>
+	</div>
+
+</form>

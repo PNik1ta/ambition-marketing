@@ -20,6 +20,7 @@
 			</a>
 			<div>
 				<i class="material-icons" (click)="deleteMassage(massage._id!)">delete</i>
+        <i class="material-icons" (click)="openChangeModal(massage._id!)">create</i>
 			</div>
 		</div>
 	</div>
@@ -73,6 +74,48 @@
 		<button type="button" (click)="closeAddModal()" [disabled]="addForm.disabled"
 			class="modal-close waves-effect waves-green btn-flat">Close</button>
 		<button type="submit" [disabled]="addForm.disabled || addForm.invalid"
+			class="modal-close waves-effect waves-green btn btn-yellow">Save</button>
+	</div>
+</form>
+
+<form #changeModal class="modal" [formGroup]="changeForm" (ngSubmit)="changeMassage()">
+	<div class="modal-content">
+		<h4>Change massage</h4>
+		<div class="input-field">
+			<input formControlName="name" id="change-name" type="text" class="validate"
+				[ngClass]="{'invalid': ChangeName!.invalid && ChangeName!.touched}">
+			<label for="change-name">Name</label>
+			<span class="helper-text red-text" *ngIf="ChangeName?.invalid && ChangeName?.touched">
+				<span *ngIf="ChangeName?.hasError('required')">Name can't be empty</span>
+			</span>
+		</div>
+
+		<div class="input-field">
+			<input formControlName="description" id="change-description" type="text" class="validate"
+				[ngClass]="{'invalid': ChangeDescription?.invalid && ChangeDescription?.touched }">
+			<label for="change-description">Description</label>
+			<span class="helper-text red-text"
+				*ngIf="ChangeDescription?.invalid && ChangeDescription?.touched">
+				<span *ngIf="ChangeDescription?.hasError('required')">Description can't be empty</span>
+			</span>
+		</div>
+
+    <div>
+			<input type="file" class="dn" (change)="onFileUpload($event)" #input>
+			<button [disabled]="changeForm.disabled" type="button" (click)="triggerClick()"
+				class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Upload
+				image</button>
+		</div>
+
+		<div>
+			<img class="responsive-image h200" [src]="imagePreview" *ngIf="imagePreview" alt="image preview">
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" (click)="closeChangeModal()" [disabled]="changeForm.disabled"
+			class="modal-close waves-effect waves-green btn-flat">Close</button>
+		<button type="submit" [disabled]="changeForm.disabled || changeForm.invalid"
 			class="modal-close waves-effect waves-green btn btn-yellow">Save</button>
 	</div>
 </form>

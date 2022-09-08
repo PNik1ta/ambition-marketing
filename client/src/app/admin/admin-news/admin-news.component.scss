@@ -1,0 +1,52 @@
+main {
+	padding: 20px;
+}
+
+nav {
+	padding: 0 20px;
+	margin-bottom: 20px;
+	background-color: #7952b3;
+}
+
+button {
+	float: right;
+}
+
+.btn-yellow {
+	color: #fff;
+	background-color: #ffc107;
+	&:hover {
+		background-color: #d6a103;
+	}
+}
+
+.right-btn {
+	float: right;
+}
+.collection {
+	margin-top: 70px;
+	.item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-right: 10px;
+		a {
+			flex: 0 1 95%;
+		}
+		div {
+			flex: 0 1 5%;
+		}
+		i {
+			float: right;
+			transition: all 0.3s ease 0s;
+			color: #26a69a;
+			cursor: pointer;
+			&:hover {
+				color: #f76969;
+			}
+			&:not(:first-child) {
+				margin-right: 10px;
+			}
+		}
+	}
+}
