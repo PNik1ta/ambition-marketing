@@ -1,0 +1,201 @@
+@import '../../../../assets/styles/colors.scss';
+
+header {
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100vw;
+    height: fit-content;
+
+    background-color: $pink_black;
+
+    padding: 20px 100px;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+
+        a {
+            font-family: 'madi';
+            font-size: 42px;
+            line-height: 1.5;
+            color: $pink_light;
+
+            transition: all 0.3s ease 0s;
+
+            &:hover {
+                color: $pink_light_regular;
+            }
+            
+        }
+    }
+
+    .links {
+        display: flex;
+        align-items: center;
+        column-gap: 50px;
+        a {
+            font-size: 24px;
+            line-height: 1.25;
+            color: $pink_light;
+            
+            transition: all 0.3s ease 0s;
+
+            &:hover {
+                color: $pink_light_regular;
+            }
+        }
+
+    }
+
+    .links-burger {
+        position: absolute;
+        top: -100%;
+        left: 0;
+
+        overflow: hidden;
+        transition: all 0.5s ease 0s;
+
+        &.active {
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 50px;
+        
+            background-color: $pink_black_regular;
+
+            a {
+                font-family: 'madi';
+                font-size: 42px;
+                line-height: 1.25;
+                color: #ff9ab7;
+                
+                transition: all 0.3s ease 0s;
+    
+                &:hover {
+                    color: $pink_light;
+                }
+            }
+        }
+    }
+
+    .burger-wrapper {
+        display: none;
+    }
+
+    @media screen and (max-width: 960px) {
+        padding: 20px 50px;
+        .links {
+            display: none;
+        }
+
+        .burger-wrapper {
+            display: block;
+            width: fit-content;
+            height: fit-content;
+
+            padding: 10px;
+
+            border: 1px solid $pink_light;
+            border-radius: 100%;
+
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+
+            &:hover {
+                background-color: $pink_light;
+
+                .burger {
+                    span {
+                        background-color: $pink_black;
+                    }
+
+                    &:before,
+                    &:after {
+                        background-color: $pink_black;
+                    }
+                }
+            }
+
+            .burger {
+                position: relative;
+                width: 24px;
+                height: 24px;
+    
+                span {
+                    position: absolute;
+                    top: 11px;
+                    left: 0;
+    
+                    height: 2px;
+                    width: 100%;
+    
+                    background-color: $pink_light;
+
+                    transition: all 0.3s ease 0s;
+                }
+    
+                &:before,
+                &:after {
+                    content: '';
+    
+                    position: absolute;
+                    left: 0;
+    
+                    height: 2px;
+                    width: 100%;
+    
+                    background-color: $pink_light;
+
+                    transition: all 0.3s ease 0s;
+                }
+    
+                &:before {
+                    top: 0;
+                }
+    
+                &:after {
+                    bottom: 0;
+                }
+
+                &.active {
+                    span {
+                        display: none;
+                    }
+
+                    &:before {
+                        transform: rotate(-45deg);
+                        top: 11px;
+                    }
+
+                    &:after {
+                        transform: rotate(45deg);
+                        bottom: 11px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    @media screen and (max-width: 515px) {
+        padding: 20px;
+        .logo a {
+            display: none;
+        }
+    }
+}
