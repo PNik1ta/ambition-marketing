@@ -3,7 +3,7 @@
 header {
     box-sizing: border-box;
     position: fixed;
-    z-index: 1;
+    z-index: 999;
     top: 0;
     left: 0;
 
@@ -34,7 +34,7 @@ header {
             &:hover {
                 color: $pink_light_regular;
             }
-            
+
         }
     }
 
@@ -45,12 +45,12 @@ header {
         a {
             font-size: 24px;
             line-height: 1.25;
-            color: $pink_light;
-            
+            color: $pink_light_extra;
+
             transition: all 0.3s ease 0s;
 
             &:hover {
-                color: $pink_light_regular;
+                color: $pink_light;
             }
         }
 
@@ -74,19 +74,19 @@ header {
             justify-content: center;
             align-items: center;
             row-gap: 50px;
-        
+
             background-color: $pink_black_regular;
 
             a {
                 font-family: 'madi';
                 font-size: 42px;
                 line-height: 1.25;
-                color: #ff9ab7;
-                
+                color: $pink_light_extra;
+
                 transition: all 0.3s ease 0s;
-    
+
                 &:hover {
-                    color: $pink_light;
+                    color: $pink_light_extra;
                 }
             }
         }
@@ -135,39 +135,39 @@ header {
                 position: relative;
                 width: 24px;
                 height: 24px;
-    
+
                 span {
                     position: absolute;
                     top: 11px;
                     left: 0;
-    
+
                     height: 2px;
                     width: 100%;
-    
+
                     background-color: $pink_light;
 
                     transition: all 0.3s ease 0s;
                 }
-    
+
                 &:before,
                 &:after {
                     content: '';
-    
+
                     position: absolute;
                     left: 0;
-    
+
                     height: 2px;
                     width: 100%;
-    
+
                     background-color: $pink_light;
 
                     transition: all 0.3s ease 0s;
                 }
-    
+
                 &:before {
                     top: 0;
                 }
-    
+
                 &:after {
                     bottom: 0;
                 }

@@ -22,6 +22,7 @@
     "materialize-css": "^1.0.0",
     "ngx-quill": "^7.1.2",
     "rxjs": "~7.5.0",
+    "swiper": "^8.4.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

@@ -6,13 +6,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
     ClientRoutingModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SwiperModule
   ],
   declarations: [
     LayoutComponent,
@@ -22,5 +24,5 @@ import { HomePageComponent } from './home-page/home-page.component';
   ]
 })
 export class ClientModule {
-  
+
 }

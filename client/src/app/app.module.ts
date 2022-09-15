@@ -21,7 +21,7 @@ const INTERCEPTOR_PROVIDER = {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]

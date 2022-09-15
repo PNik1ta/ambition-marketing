@@ -1,40 +1,176 @@
 <div class="welcome">
-        <h1>Ambition marketing</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Placeat provident odit, tempora numquam ut similique, suscipit aperiam nisi ratione reiciendis fugit 
-            ex molestias voluptatem? Dignissimos quaerat hic iusto fugit maxime recusandae sunt laboriosam quo earum 
-            explicabo fuga et autem delectus exercitationem aperiam, tempora porro ut voluptatem asperiores possimus? 
-            Soluta, placeat minus rerum, optio expedita inventore, tempora saepe nesciunt quia quos voluptatem. 
-            Vitae deleniti natus dicta temporibus, quidem culpa voluptates reiciendis corrupti delectus quam facere 
-            inventore facilis est? Ipsa fuga explicabo illo nostrum consequatur dicta pariatur ea labore error excepturi 
-            illum a sed vel, esse voluptas similique earum rerum? Quae, qui.</p>
-
-
-    <img src="/assets/images/home-bg.svg" alt="women">
+  <h1>Ambition marketing</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Placeat provident odit, tempora numquam ut similique, suscipit aperiam nisi ratione reiciendis fugit
+      ex molestias voluptatem? Dignissimos quaerat hic iusto fugit maxime recusandae sunt laboriosam quo earum
+      explicabo fuga et autem delectus exercitationem aperiam, tempora porro ut voluptatem asperiores possimus?
+      Soluta, placeat minus rerum, optio expedita inventore, tempora saepe nesciunt quia quos voluptatem.
+      Vitae deleniti natus dicta temporibus, quidem culpa voluptates reiciendis corrupti delectus quam facere
+      inventore facilis est? Ipsa fuga explicabo illo nostrum consequatur dicta pariatur ea labore error excepturi
+      illum a sed vel, esse voluptas similique earum rerum? Quae, qui.
+  </p>
+  <img src="/assets/images/home-bg.svg" alt="women">
 </div>
 
 <div class="benefits">
-    <h2>Why us?</h2>
+  <h2>Why us?</h2>
+  <div class="items">
+      <div class="item">
+          <img src="/assets/icons/success.svg" alt="success icon">
+          <p>Benefit 1</p>
+      </div>
+      <div class="item">
+          <img src="/assets/icons/success.svg" alt="success icon">
+          <p>Benefit 2</p>
+      </div>
+      <div class="item">
+          <img src="/assets/icons/success.svg" alt="success icon">
+          <p>Benefit 3</p>
+      </div>
+      <div class="item">
+          <img src="/assets/icons/success.svg" alt="success icon">
+          <p>Benefit 4</p>
+      </div>
+  </div>
+</div>
 
-    <div class="items">
-        <div class="item">
-            <img src="/assets/icons/success.svg" alt="success icon">
-            <p>Benefit 1</p>
+<div class="masseuses">
+  <h2>Our masseuses</h2>
+  <swiper class="swiper" #swiper [config]="config">
+    <ng-template swiperSlide>
+      <div class="masseuse">
+        <img class="avatar" src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
+        <div class="info">
+          <h3>Indiana Johns</h3>
+          <div class="rating">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+          </div>
+          <button>Show more...</button>
         </div>
+      </div>
+    </ng-template>
 
-        <div class="item">
-            <img src="/assets/icons/success.svg" alt="success icon">
-            <p>Benefit 2</p>
+    <ng-template swiperSlide>
+      <div class="masseuse">
+        <img class="avatar" src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
+        <div class="info">
+          <h3>Indiana Johns</h3>
+          <div class="rating">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+          </div>
+          <button>Show more...</button>
         </div>
+      </div>
+    </ng-template>
 
-        <div class="item">
-            <img src="/assets/icons/success.svg" alt="success icon">
-            <p>Benefit 3</p>
+    <ng-template swiperSlide>
+      <div class="masseuse">
+        <img class="avatar" src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
+        <div class="info">
+          <h3>Indiana Johns</h3>
+          <div class="rating">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+          </div>
+          <button>Show more...</button>
         </div>
+      </div>
+    </ng-template>
 
-        <div class="item">
-            <img src="/assets/icons/success.svg" alt="success icon">
-            <p>Benefit 4</p>
+    <ng-template swiperSlide>
+      <div class="masseuse">
+        <img class="avatar" src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
+        <div class="info">
+          <h3>Indiana Johns</h3>
+          <div class="rating">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon">
+          </div>
+          <button>Show more...</button>
         </div>
-    </div>
+      </div>
+    </ng-template>
+  </swiper>
+
+  <button class="prev" (click)="slidePrev()">
+    <div class="arrow-left"></div>
+  </button>
+  <button class="next" (click)="slideNext()"><div class="arrow-right"></div></button>
+</div>
+
+<div class="news">
+  <h2>Last news</h2>
+  <swiper class="swiper-news" #swiperNews [config]="config">
+    <ng-template swiperSlide>
+      <div class="news-item">
+        <img src="/assets/images/news-example.jfif" alt="news example">
+        <div class="content">
+          <h3>News title</h3>
+          <button>Show more...</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div class="news-item">
+        <img src="/assets/images/news-example.jfif" alt="news example">
+        <div class="content">
+          <h3>News title</h3>
+          <button>Show more...</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div class="news-item">
+        <img src="/assets/images/news-example.jfif" alt="news example">
+        <div class="content">
+          <h3>News title</h3>
+          <button>Show more...</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div class="news-item">
+        <img src="/assets/images/news-example.jfif" alt="news example">
+        <div class="content">
+          <h3>News title</h3>
+          <button>Show more...</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div class="news-item">
+        <img src="/assets/images/news-example.jfif" alt="news example">
+        <div class="content">
+          <h3>News title</h3>
+          <button>Show more...</button>
+        </div>
+      </div>
+    </ng-template>
+  </swiper>
+
+  <button class="prev" (click)="slideNewsPrev()">
+    <div class="arrow-left"></div>
+  </button>
+
+  <button class="next" (click)="slideNewsNext()">
+    <div class="arrow-right"></div>
+  </button>
 </div>
