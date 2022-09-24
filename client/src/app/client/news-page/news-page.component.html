@@ -1,0 +1,46 @@
+<div class="news">
+  <div class="news-item">
+    <img src="/assets/images/news-example.jfif" alt="news example">
+
+    <div class="content">
+      <h3>News title</h3>
+      <button>Show more...</button>
+    </div>
+
+    <hr>
+
+    <div class="rating">
+      <div class="likes">
+        <div class="rating-item">
+          <img src="/assets/icons/like.svg" alt="like icon">
+          <p>340</p>
+        </div>
+
+        <div class="rating-item">
+          <img src="/assets/icons/dislike.svg" alt="dislike icon">
+          <p>340</p>
+        </div>
+      </div>
+
+      <div class="rating-item" (click)="openComments()">
+        <img src="/assets/icons/comment.svg" alt="comment icon">
+        <p>340</p>
+      </div>
+    </div>
+
+    <div class="comments" [ngClass]="{'active': isOpened}">
+      <div class="comment">
+        <div class="user">
+          <img src="/assets/images/avatar-example.png" alt="avatar example">
+          <p>John Johnson</p>
+        </div>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, veritatis a iusto iure at enim voluptatem assumenda,
+          aliquid earum obcaecati ex dolor iste explicabo deleniti quod sequi asperiores ratione ea.</p>
+      </div>
+
+      <hr>
+    </div>
+  </div>
+
+
+</div>
