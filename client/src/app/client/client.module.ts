@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SwiperModule } from 'swiper/angular';
+import { MassagesPageComponent } from './massages-page/massages-page.component';
+import { MassageDetailComponent } from './massage-detail/massage-detail.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,9 @@ import { SwiperModule } from 'swiper/angular';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    HomePageComponent
+    HomePageComponent,
+    MassagesPageComponent,
+    MassageDetailComponent
   ]
 })
 export class ClientModule {

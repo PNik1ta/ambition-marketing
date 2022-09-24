@@ -1,0 +1,60 @@
+@import '../../../assets/styles/colors.scss';
+
+.massage {
+  padding: 0 100px;
+
+  img {
+    width: 1000px;
+    height: 600px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: 'madi';
+    color: $pink_light_regular;
+    font-size: 42px;
+    line-height: 1.25;
+  }
+
+  p {
+    font-size: 20px;
+    color: #777;
+    line-height: 1.25;
+    text-align: justify;
+
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 0 50px;
+    img {
+      height: 400px;
+    }
+  }
+
+  @media screen and (max-width: 556px) {
+    padding: 0 20px;
+    img {
+      height: 300px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 380px) {
+    padding: 0 10px;
+    img {
+      height: 200px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+}
