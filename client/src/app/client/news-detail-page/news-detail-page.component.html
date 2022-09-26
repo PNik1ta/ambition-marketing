@@ -1,0 +1,59 @@
+<img class="preview-img" src="/assets/images/news-example.jfif" alt="news example">
+
+<div class="title">
+  <h1>News title</h1>
+  <h5>12.01.2022</h5>
+</div>
+
+<p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit molestias ipsa quaerat, cumque assumenda odit
+  architecto in perferendis tempora consequatur. Eveniet, a. Corporis, odio nesciunt necessitatibus vel provident
+  libero et, omnis consequuntur aliquam corrupti deleniti dignissimos odit ratione officiis dolores dolorem laudantium
+  eum. Fugit, ipsam accusantium cumque adipisci debitis aperiam amet tempora illum veritatis reprehenderit cum
+  voluptatem. Ducimus, accusantium sint, aliquam dicta esse impedit possimus, quo in non officiis cupiditate dolore
+  cum distinctio voluptas reiciendis. Quis, consectetur amet, itaque minus rerum aliquid harum at autem distinctio
+  ipsa quidem incidunt maiores beatae molestiae doloribus culpa, voluptates eius consequatur soluta nostrum facilis
+  laudantium! Id et illum ut qui ipsum quasi in dolorum, perferendis nesciunt similique impedit laborum dolor,
+  repellat possimus repudiandae fugit, est ex at. Modi earum adipisci voluptates dolorem aut obcaecati numquam
+   ullam veniam deserunt recusandae in cupiditate alias, eum harum quam a esse nemo molestiae quia sequi.
+   Dolores adipisci perspiciatis incidunt quod odit nihil maiores et delectus fugiat voluptate sapiente reiciendis,
+   tempore laboriosam modi quo accusantium, consequatur quisquam quibusdam, possimus cupiditate deleniti beatae
+   doloribus voluptatem! Provident, rem odit reiciendis omnis commodi laboriosam quae quidem ex quasi ab! Ipsum nam,
+    illum ab totam impedit autem assumenda quod illo aperiam sapiente architecto esse iste suscipit ex deserunt cum
+     eaque repudiandae et minima provident reprehenderit iusto facere quis aliquam. Nesciunt labore vero, ea explicabo,
+      consectetur qui eius soluta ex cumque tempora quisquam laboriosam voluptas atque quibusdam deserunt nobis minima
+      itaque? At voluptate ea accusantium obcaecati reprehenderit quis, perspiciatis sapiente sequi veritatis placeat
+      ipsum, doloremque vel asperiores rerum possimus commodi! Voluptates quasi illum eligendi alias, aut aspernatur
+      voluptatibus vitae debitis sed ea neque dicta exercitationem obcaecati inventore culpa, unde itaque corporis
+      a adipisci blanditiis. Qui labore, sapiente harum fuga,
+  quos reprehenderit nisi minima maiores voluptates, quam amet nihil odio possimus saepe laboriosam recusandae quae!</p>
+
+<hr>
+
+<div class="rating">
+  <div class="likes">
+    <div class="rating-item">
+      <img src="/assets/icons/like.svg" alt="like icon">
+      <p>340</p>
+    </div>
+    <div class="rating-item">
+      <img src="/assets/icons/dislike.svg" alt="dislike icon">
+      <p>340</p>
+    </div>
+  </div>
+  <div class="rating-item" (click)="openComments()">
+    <img src="/assets/icons/comment.svg" alt="comment icon">
+    <p>340</p>
+  </div>
+</div>
+<div class="comments" [ngClass]="{'active': isOpened}">
+  <div class="comment">
+    <div class="user">
+      <img src="/assets/images/avatar-example.png" alt="avatar example">
+      <p>John Johnson</p>
+    </div>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, veritatis a iusto iure at enim voluptatem assumenda,
+      aliquid earum obcaecati ex dolor iste explicabo deleniti quod sequi asperiores ratione ea.</p>
+  </div>
+  <hr>
+</div>
+

@@ -10,6 +10,7 @@ import { SwiperModule } from 'swiper/angular';
 import { MassagesPageComponent } from './massages-page/massages-page.component';
 import { MassageDetailComponent } from './massage-detail/massage-detail.component';
 import { NewsPageComponent } from './news-page/news-page.component';
+import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { NewsPageComponent } from './news-page/news-page.component';
     HomePageComponent,
     MassagesPageComponent,
     MassageDetailComponent,
-    NewsPageComponent
+    NewsPageComponent,
+    NewsDetailPageComponent
   ]
 })
 export class ClientModule {

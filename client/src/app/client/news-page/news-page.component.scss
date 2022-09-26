@@ -21,6 +21,7 @@
   @media screen and (max-width: 800px) {
     padding: 0 50px;
   }
+  
   &-item {
     box-sizing: border-box;
     height: fit-content;
@@ -185,7 +186,7 @@
               width: 36px;
               height: 36px;
             }
-            
+
             p {
               font-size: 20px;
             }
