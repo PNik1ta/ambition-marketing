@@ -1,0 +1,259 @@
+@import '../../../assets/styles/colors.scss';
+
+.masseuse {
+  padding: 0 150px;
+
+  @media screen and (max-width: 950px) {
+    padding: 0 50px;
+  }
+
+  @media screen and (max-width: 420px) {
+    padding: 0 20px;
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .avatar {
+      img {
+        width: 240px;
+        height: 240px;
+        overflow: hidden;
+        border-radius: 100%;
+        margin: 0 auto;
+      }
+
+      h1 {
+        margin-top: 20px;
+
+        font-size: 54px;
+        line-height: 1.5;
+        font-family: 'madi';
+        color: $pink_light_regular;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .stars {
+        display: flex;
+        column-gap: 15px;
+        align-items: center;
+        margin: 0 auto;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    .info {
+      h3 {
+        font-size: 28px;
+        line-height: 1.5;
+        color: $pink_light;
+        span {
+          font-size: 42px;
+          font-family: 'madi';
+          color: $pink_light_regular;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .avatar {
+        img {
+          width: 120px;
+          height: 120px;
+        }
+
+        h1 {
+          margin-top: 10px;
+          font-size: 30px;
+        }
+
+        .stars {
+          column-gap: 5px;
+
+          img {
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+
+      .info {
+        h3 {
+          font-size: 20px;
+
+          span {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 420px) {
+      flex-direction: column;
+    }
+  }
+
+  .about {
+    margin-bottom: 30px;
+    h3 {
+      font-size: 42px;
+      font-family: 'madi';
+      color: $pink_light_regular;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: 20px;
+      color: #777;
+      letter-spacing: 0.8;
+      line-height: 1.25;
+      text-align: justify;
+    }
+
+    @media screen and (max-width: 600px) {
+      margin-bottom: 20px;
+      h3 {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 20px;
+    column-gap: 10px;
+    margin-bottom: 50px;
+
+    img {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+
+}
+
+.rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 20px;
+
+  .likes {
+    display: flex;
+    column-gap: 50px;
+    align-items: center;
+  }
+
+  &-item {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+
+    cursor: pointer;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .likes {
+      column-gap: 20px;
+    }
+
+    &-item {
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.comments {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+
+  transition: all 0.3s ease 0s;
+
+  padding: 10px 20px;
+
+  &.active {
+    height: 100%;
+    opacity: 1;
+  }
+
+  .comment {
+    border-radius: 15px;
+    padding: 5px;
+    .user {
+      display: flex;
+      column-gap: 20px;
+      align-items: center;
+
+      img {
+        width: 48px;
+        height: 48px;
+        border-radius: 100%;
+        overflow: hidden;
+      }
+
+      p {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+    }
+
+    p {
+      color: #777;
+      font-size: 20px;
+      line-height: 1.25;
+      text-align: justify;
+    }
+
+    @media screen and (max-width: 500px) {
+      p {
+        font-size: 16px;
+      }
+
+      .user {
+        img {
+          width: 36px;
+          height: 36px;
+        }
+
+        p {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
