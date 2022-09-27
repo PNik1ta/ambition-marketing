@@ -15,7 +15,7 @@ const INTERCEPTOR_PROVIDER = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

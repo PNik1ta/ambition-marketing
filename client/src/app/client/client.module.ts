@@ -11,6 +11,7 @@ import { MassagesPageComponent } from './massages-page/massages-page.component';
 import { MassageDetailComponent } from './massage-detail/massage-detail.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.component';
+import { MasseusePageComponent } from './masseuse-page/masseuse-page.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
     MassagesPageComponent,
     MassageDetailComponent,
     NewsPageComponent,
-    NewsDetailPageComponent
+    NewsDetailPageComponent,
+    MasseusePageComponent
   ]
 })
 export class ClientModule {

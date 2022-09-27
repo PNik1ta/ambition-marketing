@@ -1,0 +1,100 @@
+@import '../../../assets/styles/colors.scss';
+
+.masseuses {
+  padding: 0 50px;
+  display: grid;
+  column-gap: 20px;
+  row-gap: 30px;
+  grid-template-columns: repeat(auto-fill, 400px);
+
+  justify-content: center;
+
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 415px) {
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
+
+  .masseuse {
+    box-sizing: border-box;
+    height: fit-content;
+    width: 400px;
+
+    border-radius: 10px;
+    border: 1px solid $pink_black_regular;
+
+    padding: 10px;
+
+    .main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      img {
+        width: 128px;
+        height: 128px;
+        border-radius: 100%;
+        overflow: hidden;
+      }
+
+      .content {
+        h2 {
+          font-size: 48px;
+          line-height: 1.25;
+          font-family: 'madi';
+          color: $pink_light;
+        }
+
+        .rating {
+          display: flex;
+          column-gap: 15px;
+          align-items: center;
+
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 415px) {
+      width: 300px;
+      .main {
+        flex-direction: column;
+
+        .content {
+          h2 {
+            margin-top: 20px;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    a {
+      border-radius: 15px;
+      background-color: $pink_light_regular;
+      color: $pink_light_extra;
+      border: none;
+
+      margin: 0 auto;
+      display: block;
+      margin-top: 15px;
+      padding: 5px 20px;
+
+      font-size: 20px;
+      line-height: 1.25;
+
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+
+      text-align: center;
+
+      &:hover {
+        background-color: $pink_light_extra;
+        color: $pink_light_regular;
+      }
+    }
+  }
+}
