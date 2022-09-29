@@ -14,6 +14,8 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
 import { MasseusePageComponent } from './masseuse-page/masseuse-page.component';
 import { MasseuseDetailPageComponent } from './masseuse-detail-page/masseuse-detail-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SwiperModule
+    SwiperModule,
+    TranslateModule,
+    SharedModule
   ],
   declarations: [
     LayoutComponent,

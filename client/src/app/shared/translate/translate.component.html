@@ -1,0 +1,10 @@
+<form class="input-field" [formGroup]="form">
+  <select #langSelect [(ngModel)]="selectedLanguage" formControlName="lang" (change)="selectionChanged()">
+    <option value="en" data-icon="/assets/icons/lang.svg" selected>EN</option>
+    <option value="ru" data-icon="/assets/icons/lang.svg">RU</option>
+    <option value="de" data-icon="/assets/icons/lang.svg">DE</option>
+    <option value="fr" data-icon="/assets/icons/lang.svg">FR</option>
+    <option value="el" data-icon="/assets/icons/lang.svg">EL</option>
+  </select>
+  <label>{{'LANGUAGE' | translate}}</label>
+</form>

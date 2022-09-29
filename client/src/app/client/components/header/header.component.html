@@ -5,17 +5,17 @@
     </div>
 
     <div class="links">
-        <a routerLink="Masseuses">Masseuses</a>
-        <a routerLink="Massages">Massages</a>
-        <a routerLink="News">News</a>
-        <a routerLink="Profile">Profile</a>
+        <a routerLink="Masseuses">{{'MASSEUSES' | translate}}</a>
+        <a routerLink="Massages">{{'MASSAGES' | translate}}</a>
+        <a routerLink="News">{{'NEWS' | translate}}</a>
+        <a routerLink="Profile">{{'PROFILE' | translate}}</a>
     </div>
 
     <div class="links-burger" [ngClass]="{'active': isActive}">
-        <a routerLink="Masseuses">Masseuses</a>
-        <a routerLink="Massages">Massages</a>
-        <a routerLink="News">News</a>
-        <a routerLink="Profile">Profile</a>
+        <a routerLink="Masseuses">{{'MASSEUSES' | translate}}</a>
+        <a routerLink="Massages">{{'MASSAGES' | translate}}</a>
+        <a routerLink="News">{{'NEWS' | translate}}</a>
+        <a routerLink="Profile">{{'PROFILE' | translate}}</a>
     </div>
 
     <div class="burger-wrapper" (click)="open()">
@@ -23,6 +23,8 @@
             <span></span>
         </div>
     </div>
+
+    <app-translate></app-translate>
 
 </header>
 
