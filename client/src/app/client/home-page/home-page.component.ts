@@ -14,11 +14,19 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   @ViewChild('swiperNews', {static: false}) swiperNews!: SwiperComponent;
 
   config: SwiperOptions = {
-    slidesPerView: 3,
-    spaceBetween: 50,
+    slidesPerView: 1,
+    spaceBetween: 200,
     navigation: true,
     pagination: { clickable: true },
-    scrollbar: { draggable: true }
+    scrollbar: { draggable: true },
+    breakpoints: {
+      1160: {
+        slidesPerView: 2
+      },
+      1700: {
+        slidesPerView: 3
+      }
+    },
   }
 
   constructor() { }

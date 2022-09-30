@@ -25,7 +25,7 @@ header {
 
         a {
             font-family: 'madi';
-            font-size: 42px;
+            font-size: 34px;
             line-height: 1.5;
             color: $pink_light;
 
@@ -36,6 +36,14 @@ header {
             }
 
         }
+    }
+
+    @media screen and (max-width: 1300px) {
+      .logo {
+        a {
+          display: none;
+        }
+      }
     }
 
     .links {
@@ -79,7 +87,7 @@ header {
 
             a {
                 font-family: 'madi';
-                font-size: 42px;
+                font-size: 34px;
                 line-height: 1.25;
                 color: $pink_light_extra;
 
@@ -112,7 +120,7 @@ header {
             border: 1px solid $pink_light;
             border-radius: 100%;
 
-            z-index: 2;
+            z-index: 999;
             cursor: pointer;
             transition: all 0.3s ease 0s;
 

@@ -1,12 +1,12 @@
 
 
 .select-wrapper .caret {
-
   fill: #ff94b3;
 }
 
 .select-wrapper input.select-dropdown {
   color: #ff94b3;
+  z-index: 0;
 }
 
 .dropdown-content li span {
@@ -15,4 +15,10 @@
 
 .dropdown-content li span {
   color: #ff94b3;
+}
+
+@media screen and (max-width: 440px) {
+  form {
+    width: 130px;
+  }
 }

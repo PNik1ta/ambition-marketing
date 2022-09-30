@@ -1,6 +1,7 @@
 @import '../../../assets/styles/colors.scss';
 
 .news {
+  margin-top: 20px;
   padding: 0 350px;
   display: grid;
   column-gap: 20px;
@@ -21,7 +22,7 @@
   @media screen and (max-width: 800px) {
     padding: 0 50px;
   }
-  
+
   &-item {
     box-sizing: border-box;
     height: fit-content;
