@@ -9,6 +9,8 @@ import { NewsDetailPageComponent } from './news-detail-page/news-detail-page.com
 import { MasseusePageComponent } from './masseuse-page/masseuse-page.component';
 import { MasseuseDetailPageComponent } from './masseuse-detail-page/masseuse-detail-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [
     { path: '', component: LayoutComponent, children: [
@@ -19,7 +21,9 @@ const routes: Routes = [
       { path: 'News/:id', component: NewsDetailPageComponent },
       { path: 'Masseuses', component: MasseusePageComponent },
       { path: 'Masseuses/:id', component: MasseuseDetailPageComponent },
-      { path: 'Profile', component: ProfilePageComponent }
+      { path: 'Profile', component: ProfilePageComponent },
+      { path: 'Register', component: RegisterPageComponent },
+      { path: 'Login', component: LoginPageComponent }
     ]}
 ]
 

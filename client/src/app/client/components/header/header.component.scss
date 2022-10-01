@@ -34,7 +34,6 @@ header {
             &:hover {
                 color: $pink_light_regular;
             }
-
         }
     }
 
@@ -104,7 +103,7 @@ header {
         display: none;
     }
 
-    @media screen and (max-width: 960px) {
+    @media screen and (max-width: 1080px) {
         padding: 20px 50px;
         .links {
             display: none;

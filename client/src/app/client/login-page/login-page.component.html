@@ -1,0 +1,28 @@
+<form class="login" [formGroup]="form" (ngSubmit)="login()">
+  <h1>{{'LOGIN' | translate}}</h1>
+
+  <div class="input-field">
+		<input formControlName="email" id="email" type="email" class="validate"
+			[ngClass]="{'invalid': Email!.invalid && Email!.touched}">
+		<label for="email">{{'EMAIL' | translate}}</label>
+		<span class="helper-text red-text" *ngIf="Email?.invalid && Email?.touched">
+			<span *ngIf="Email?.hasError('required')">{{'EMAIL_REQUIRED' | translate}}</span>
+			<span *ngIf="Email?.hasError('email')">{{'EMAIL_INCORRECT' | translate}}</span>
+		</span>
+	</div>
+
+	<div class="input-field">
+		<input formControlName="password" id="password" type="password" class="validate"
+			[ngClass]="{'invalid': Password?.invalid && Password?.touched }">
+		<label for="password">{{'PASSWORD' | translate}}</label>
+		<span class="helper-text red-text"
+			*ngIf="Password?.invalid && Password?.touched">
+			<span *ngIf="Password?.hasError('required')">{{'PASSWORD_REQURIED' | translate}}</span>
+			<span *ngIf="Password?.hasError('minLength')">{{'PASSWORD_MIN' | translate}}</span>
+		</span>
+	</div>
+
+  <button type="submit" [disabled]="form.disabled || form.invalid"
+  class="waves-effect waves-green btn btn-yellow">{{'LOGIN' | translate}}</button>
+</form>
+

@@ -16,6 +16,8 @@ import { MasseuseDetailPageComponent } from './masseuse-detail-page/masseuse-det
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   imports: [
@@ -38,7 +40,9 @@ import { SharedModule } from '../shared/shared.module';
     NewsDetailPageComponent,
     MasseusePageComponent,
     MasseuseDetailPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    RegisterPageComponent,
+    LoginPageComponent
   ]
 })
 export class ClientModule {
