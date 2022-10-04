@@ -15,4 +15,5 @@ export interface IAccount {
     role: Role;
     rt?: string;
     ratedUsersId?: string[];
+    masseuseId?: string;
 }

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IAccount } from './../../shared/interfaces/IAccount';
-import { Document } from 'mongoose';
+import mongoose, { Document, Mongoose } from 'mongoose';
 import { Role } from '../../shared/enums/Role';
 
 @Schema()
@@ -43,6 +43,9 @@ export class Account extends Document implements IAccount {
 
     @Prop()
     ratedUsersId?: string[];
+
+    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Masseuse'})
+    masseuseId?: string;
 }
 
 export const AccountSchema = SchemaFactory.createForClass(Account);

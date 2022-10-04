@@ -18,8 +18,8 @@ export class MasseuseService {
         const masseuse = await new MasseuseEntity({
             photos: dto.photos,
             prices: dto.prices,
-            userId: dto.userId,
-            commentsCount: 0
+            commentsCount: 0,
+            name: dto.name
         });
 
         const createdMasseuse = await this.masseuseRepository.create(masseuse);
@@ -58,6 +58,7 @@ export class MasseuseService {
         const masseuseEntity = new MasseuseEntity(masseuse);
         masseuseEntity.photos = dto.photos;
         masseuseEntity.prices = dto.prices;
+        masseuseEntity.name = dto.name;
 
         const updatedMasseuse = this.masseuseRepository.update(masseuseEntity);
         if(!updatedMasseuse) {

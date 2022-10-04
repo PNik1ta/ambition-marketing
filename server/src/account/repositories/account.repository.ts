@@ -16,20 +16,19 @@ export class AccountRepository {
     }
 
     async findAll(): Promise<Account[]> {
-        return this.accountModel.find().exec();
+        return this.accountModel.find().populate('masseuseId').exec();
     }
 
     async findByEmail(email: string): Promise<Account> {
-		return this.accountModel.findOne({ email }).exec();
+		return this.accountModel.findOne({ email }).populate('masseuseId').exec();
 	}
 
 	async findById(id: string): Promise<Account> {
-		return this.accountModel.findById(id).exec();
+		return this.accountModel.findById(id).populate('masseuseId').exec();
 	}
 
 	async delete(email: string): Promise<void> {
 	 	this.accountModel.deleteOne({ email }).exec();
-
 	}
 
 	async update({ _id, ...rest }: AccountEntity) {

@@ -12,6 +12,9 @@ export class News extends Document implements INews {
 
     @Prop({required: true})
     description: string;
+
+    @Prop({required: false})
+    date?: Date;
 }
 
 export const NewsSchema = SchemaFactory.createForClass(News);

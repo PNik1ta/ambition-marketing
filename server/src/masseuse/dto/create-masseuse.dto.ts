@@ -12,5 +12,5 @@ export class CreateMasseuseDto {
 
     @IsString()
     @IsNotEmpty()
-    userId: string;
+    name: string;
 }

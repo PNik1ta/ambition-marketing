@@ -17,6 +17,7 @@ export class AccountEntity implements IAccount {
     role: Role;
     rt?: string;
     ratedUsersId?: string[];
+    masseuseId?: string;
     
     constructor(account: IAccount) {
         this._id = account._id;
@@ -33,6 +34,7 @@ export class AccountEntity implements IAccount {
         this.rt = account.rt;
         this.ratesCount = account.ratesCount;
         this.ratedUsersId = account.ratedUsersId;
+        this.masseuseId = account.masseuseId;
     }
 
     public async setPassword(password: string): Promise<AccountEntity> {

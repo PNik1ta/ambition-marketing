@@ -12,6 +12,7 @@ export class NewsRepository {
 
     async create(news: NewsEntity): Promise<News> {
         const newNews = new this.newsModel(news);
+        newNews.date = new Date();
         return newNews.save();
     }
     

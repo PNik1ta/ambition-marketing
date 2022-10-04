@@ -10,11 +10,11 @@ export class Masseuse extends Document implements IMasseuse {
     @Prop()
     photos: string[];
 
-    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Account'})
-    userId: string;
-
     @Prop({ default: 0})
     commentsCount: number;
+
+    @Prop()
+    name: string;
 }
 
 export const MasseuseSchema = SchemaFactory.createForClass(Masseuse);

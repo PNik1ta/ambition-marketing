@@ -25,7 +25,8 @@ export class AccountService {
             fullname: '',
             rating: 0,
             role: dto.role ?? Role.USER,
-			ratesCount: 0
+			ratesCount: 0,
+			masseuseId: dto.masseuseId
 		}).setPassword(dto.password);
 
 		const createdAccount = await this.accountRepository.create(account);

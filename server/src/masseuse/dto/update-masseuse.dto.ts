@@ -9,4 +9,8 @@ export class UpdateMasseuseDto {
     @IsNotEmpty()
     @IsArray()
     photos: string[];
+
+    @IsString()
+    @IsNotEmpty()
+    name: string;
 }

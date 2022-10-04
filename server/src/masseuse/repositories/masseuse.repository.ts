@@ -16,7 +16,7 @@ export class MasseuseRepository {
     }
 
     async findAll(): Promise<Masseuse[]> {
-        return this.masseuseModel.find().populate('userId').exec();
+        return this.masseuseModel.find().exec();
     }
 
     async findById(id: string): Promise<Masseuse> {

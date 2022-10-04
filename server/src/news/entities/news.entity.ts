@@ -4,11 +4,13 @@ export class NewsEntity implements INews{
     title: string;
     previewImg: string;
     description: string;
+    date?: Date;
 
     constructor(news: INews) {
         this._id = news._id;
         this.description = news.description;
         this.previewImg = news.previewImg;
         this.title = news.title;
+        this.date = news.date;
     }
 }

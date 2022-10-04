@@ -3,4 +3,5 @@ export interface INews {
     title: string;
     previewImg: string;
     description: string;
+    date?: Date;
 }

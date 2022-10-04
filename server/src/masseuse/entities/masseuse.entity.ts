@@ -4,14 +4,14 @@ export class MasseuseEntity implements IMasseuse{
     _id?: string;
     prices: string;
     photos: string[];
-    userId: string;
     commentsCount: number;
+    name: string;
 
     constructor(masseuse: IMasseuse) {
         this._id = masseuse._id;
         this.photos = masseuse.photos;
         this.prices = masseuse.prices;
-        this.userId = masseuse.userId;
         this.commentsCount = masseuse.commentsCount;
+        this.name = masseuse.name;
     }
 }

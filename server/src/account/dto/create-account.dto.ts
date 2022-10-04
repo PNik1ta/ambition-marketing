@@ -17,4 +17,7 @@ export class CreateAccountDto {
 
 	@IsEnum(Role)
 	role?: Role;
+
+	@IsString()
+	masseuseId?: string;
 }
