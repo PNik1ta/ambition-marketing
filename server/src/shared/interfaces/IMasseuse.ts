@@ -4,4 +4,6 @@ export interface IMasseuse {
     photos: string[];
     commentsCount: number;
     name: string;
+    likesCount: number;
+    dislikesCount: number;
 }

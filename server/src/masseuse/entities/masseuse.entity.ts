@@ -6,6 +6,8 @@ export class MasseuseEntity implements IMasseuse{
     photos: string[];
     commentsCount: number;
     name: string;
+    likesCount: number;
+    dislikesCount: number;
 
     constructor(masseuse: IMasseuse) {
         this._id = masseuse._id;

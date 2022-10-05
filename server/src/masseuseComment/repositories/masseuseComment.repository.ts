@@ -16,11 +16,11 @@ export class MasseuseCommentRepository {
     }
 
     async findAll(): Promise<MasseuseComment[]> {
-        return this.masseuseCommentModel.find().exec();
+        return this.masseuseCommentModel.find().populate('fromUser').exec();
     }
 
     async findById(id: string): Promise<MasseuseComment> {
-        return this.masseuseCommentModel.findById(id).exec();
+        return this.masseuseCommentModel.findById(id).populate('fromUser').exec();
     }
 
     async delete(id: string): Promise<void> {
