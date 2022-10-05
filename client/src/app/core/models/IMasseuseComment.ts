@@ -1,6 +1,8 @@
+import { IAccount } from "./IAccount";
+
 export interface IMasseuseComment {
   _id?: string;
-  fromUser: string;
+  fromUser: IAccount;
   masseuse: string;
   comment: string;
 }

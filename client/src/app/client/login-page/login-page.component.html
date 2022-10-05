@@ -17,8 +17,8 @@
 		<label for="password">{{'PASSWORD' | translate}}</label>
 		<span class="helper-text red-text"
 			*ngIf="Password?.invalid && Password?.touched">
-			<span *ngIf="Password?.hasError('required')">{{'PASSWORD_REQURIED' | translate}}</span>
-			<span *ngIf="Password?.hasError('minLength')">{{'PASSWORD_MIN' | translate}}</span>
+			<span *ngIf="Password?.hasError('required')">{{'PASSWORD_REQUIRED' | translate}}</span>
+			<span *ngIf="Password?.hasError('minlength')">{{'PASSWORD_MIN' | translate}}</span>
 		</span>
 	</div>
 

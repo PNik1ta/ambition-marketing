@@ -61,6 +61,7 @@ export class RegisterPageComponent implements OnInit {
     let dto: LoginDto = new LoginDto(this.Email?.value, this.Password?.value);
 
     this.authService.login(dto).subscribe((res: ITokens) => {
+      sessionStorage.setItem('email', this.Email?.value);
       this.router.navigate(['Profile']);
     },
     () => {

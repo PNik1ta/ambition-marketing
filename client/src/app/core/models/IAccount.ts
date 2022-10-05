@@ -1,4 +1,5 @@
 import { Role } from "../enums/Role";
+import { IMasseuse } from "./IMasseuse";
 
 export interface IAccount {
   _id?: string;
@@ -15,4 +16,5 @@ export interface IAccount {
   role: Role;
   rt?: string;
   ratedUsersId?: string[];
+  masseuseId?: IMasseuse;
 }

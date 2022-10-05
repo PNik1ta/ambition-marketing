@@ -12,5 +12,20 @@
   "AGE": "Ηλικία",
   "ABOUT_ME": "Σχετικά με μένα",
   "PRICES": "Τιμές",
-  "LANGUAGE": "Γλώσσα"
+  "LANGUAGE": "Γλώσσα",
+  "REGISTER": "Κανω ΕΓΓΡΑΦΗ",
+  "LOGIN": "Σύνδεση",
+  "LOGOUT": "Αποσύνδεση",
+  "BENEFIT_1": "Σχέση ποιότητας και τιμής",
+  "BENEFIT_2": "Επαγγελματικό μασάζ",
+  "BENEFIT_3": "Benefit 3",
+  "BENEFIT_4": "Benefit 4",
+  "PASSWORD": "Κωδικός πρόσβασης",
+  "EMAIL_REQUIRED": "απαιτείται email",
+  "EMAIL_INCORRECT": "Λανθασμένη μορφή email",
+  "PASSWORD_REQUIRED": "Απαιτείται κωδικός πρόσβασης",
+  "PASSWORD_MIN": "Το ελάχιστο μήκος κωδικού πρόσβασης είναι 4",
+  "CONFIRM_PASSWORD": "Επιβεβαίωση Κωδικού",
+  "USERNAME": "Όνομα χρήστη",
+  "USERNAME_REQUIRED": "Απαιτείται όνομα χρήστη"
 }

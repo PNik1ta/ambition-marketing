@@ -12,5 +12,20 @@
   "AGE": "Alter",
   "ABOUT_ME": "Über mich",
   "PRICES": "Preise",
-  "LANGUAGE": "Sprache"
+  "LANGUAGE": "Sprache",
+  "REGISTER": "Registrieren",
+  "LOGIN": "Einloggen",
+  "LOGOUT": "Ausloggen",
+  "BENEFIT_1": "Preis-Leistungs-Verhältnis",
+  "BENEFIT_2": "Professionelle Massage",
+  "BENEFIT_3": "Benefit 3",
+  "BENEFIT_4": "Benefit 4",
+  "PASSWORD": "Passwort",
+  "EMAIL_REQUIRED": "Email erforderlich",
+  "EMAIL_INCORRECT": "E-Mail-Format falsch",
+  "PASSWORD_REQUIRED": "Passwort erforderlich",
+  "PASSWORD_MIN": "Die Mindestpasswortlänge beträgt 4",
+  "CONFIRM_PASSWORD": "Passwort bestätigen",
+  "USERNAME": "Nutzername",
+  "USERNAME_REQUIRED": "Benutzername erforderlich"
 }

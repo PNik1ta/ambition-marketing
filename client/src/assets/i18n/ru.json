@@ -12,5 +12,20 @@
   "AGE": "Возраст",
   "ABOUT_ME": "О нас",
   "PRICES": "Цены",
-  "LANGUAGE": "Язык"
+  "LANGUAGE": "Язык",
+  "REGISTER": "Зарегестрироваться",
+  "LOGIN": "Войти",
+  "LOGOUT": "Выйти",
+  "BENEFIT_1": "Соотношение цены и качества",
+  "BENEFIT_2": "Профессиональный массаж",
+  "BENEFIT_3": "Benefit 3",
+  "BENEFIT_4": "Benefit 4",
+  "PASSWORD": "Пароль",
+  "EMAIL_REQUIRED": "Требуется email",
+  "EMAIL_INCORRECT": "Неверный формат email",
+  "PASSWORD_REQUIRED": "Требуется пароль",
+  "PASSWORD_MIN": "Минимальная длина пароля 4",
+  "CONFIRM_PASSWORD": "Подтвердите пароль",
+  "USERNAME": "Имя пользователя",
+  "USERNAME_REQUIRED": "Требуется имя пользователя"
 }
