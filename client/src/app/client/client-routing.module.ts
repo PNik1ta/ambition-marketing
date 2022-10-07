@@ -13,18 +13,19 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [
-    { path: '', component: LayoutComponent, children: [
-	    { path: '', component: HomePageComponent },
-      { path: 'Massages', component: MassagesPageComponent },
-      { path: 'Massages/:id', component: MassageDetailComponent },
-      { path: 'News', component: NewsPageComponent },
-      { path: 'News/:id', component: NewsDetailPageComponent },
-      { path: 'Masseuses', component: MasseusePageComponent },
-      { path: 'Masseuses/:id', component: MasseuseDetailPageComponent },
-      { path: 'Profile', component: ProfilePageComponent },
-      { path: 'Register', component: RegisterPageComponent },
-      { path: 'Login', component: LoginPageComponent }
-    ]}
+  { path: 'Login', component: LoginPageComponent },
+
+  { path: '', component: LayoutComponent, children: [
+	  { path: '', component: HomePageComponent },
+    { path: 'Massages', component: MassagesPageComponent },
+    { path: 'Massages/:id', component: MassageDetailComponent },
+    { path: 'News', component: NewsPageComponent },
+    { path: 'News/:id', component: NewsDetailPageComponent },
+    { path: 'Masseuses', component: MasseusePageComponent },
+    { path: 'Masseuses/:id', component: MasseuseDetailPageComponent },
+    { path: 'Profile', component: ProfilePageComponent },
+    { path: 'Register', component: RegisterPageComponent },
+  ]}
 ]
 
 @NgModule({
