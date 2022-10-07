@@ -2,8 +2,9 @@ import { Massage } from './models/massage.model';
 import { BaseResponse } from './../shared/classes/base-response';
 import { CreateMassageDto } from './dto/create-massage.dto';
 import { MassageService } from './massage.service';
-import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import { UpdateMassageDto } from './dto/update-massage.dto';
+import { Public } from '../shared/decorators/public.decorator';
 
 @Controller('massages')
 export class MassageController {
@@ -12,19 +13,21 @@ export class MassageController {
     ) {}
 
     @Post()
-    @HttpCode(201)
+    @HttpCode(201) 
     create(@Body() dto: CreateMassageDto): Promise<BaseResponse<Massage>> {
         return this.massageService.create(dto);
     }
 
     @Get()
     @HttpCode(200)
+    @Public()
     findAll(): Promise<Massage[]> {
         return this.massageService.findAll();
     }
 
     @Get(':id')
     @HttpCode(200)
+    @Public()
     findById(@Param('id') id: string): Promise<Massage> {
         return this.massageService.findById(id);
     }

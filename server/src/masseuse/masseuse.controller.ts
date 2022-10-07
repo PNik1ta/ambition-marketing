@@ -4,6 +4,7 @@ import { Masseuse } from './models/masseuse.model';
 import { CreateMasseuseDto } from './dto/create-masseuse.dto';
 import { MasseuseService } from './masseuse.service';
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { Public } from '../shared/decorators/public.decorator';
 
 @Controller('masseuse')
 export class MasseuseController {
@@ -17,11 +18,13 @@ export class MasseuseController {
     }
 
     @Get()
+    @Public()
     async findAll(): Promise<Masseuse[]> {
         return this.masseuseService.findAll();
     }
 
     @Get(':id')
+    @Public()
     async findById(@Param('id') id: string): Promise<Masseuse> {
         return this.masseuseService.findById(id);
     }

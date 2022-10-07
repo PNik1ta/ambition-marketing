@@ -4,6 +4,7 @@ import { BaseResponse } from './../shared/classes/base-response';
 import { NewsService } from './news.service';
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from "@nestjs/common";
 import { CreateNewsDto } from './dto/create-news.dto';
+import { Public } from '../shared/decorators/public.decorator';
 
 @Controller('news')
 export class NewsController {
@@ -19,12 +20,14 @@ export class NewsController {
 
     @Get()
     @HttpCode(200)
+    @Public()
     findAll(): Promise<News[]> {
         return this.newsService.findAll();
     }
 
     @Get(':id')
     @HttpCode(200)
+    @Public()
     findById(@Param('id') id: string): Promise<News> {
         return this.newsService.findById(id);
     }

@@ -4,6 +4,7 @@ import { BaseResponse } from '../shared/classes/base-response';
 import { CreateNewsCommentDto } from './dto/create-newsComment.dto';
 import { NewsCommentsService } from './newsComment.service';
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from "@nestjs/common";
+import { Public } from '../shared/decorators/public.decorator';
 
 @Controller('news-comments')
 export class NewsCommentsController {
@@ -19,6 +20,7 @@ export class NewsCommentsController {
 
     @Get()
     @HttpCode(200)
+    @Public()
     findAll(): Promise<NewsComment[]> {
         return this.newsCommentService.findAll();
     }

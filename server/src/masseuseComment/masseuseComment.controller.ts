@@ -4,6 +4,7 @@ import { BaseResponse } from './../shared/classes/base-response';
 import { CreateMasseuseCommentDto } from './dto/create-masseuseComment.dto';
 import { MasseuseCommentService } from './masseuseComment.service';;
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { Public } from '../shared/decorators/public.decorator';
 
 @Controller('masseuse-comments')
 export class MasseuseCommentController {
@@ -17,6 +18,7 @@ export class MasseuseCommentController {
     }
 
     @Get()
+	@Public()
     async findAll(): Promise<MasseuseComment[]> {
 		return this.masseuseCommentService.findAll();
 	}
