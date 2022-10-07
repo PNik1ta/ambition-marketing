@@ -80,13 +80,21 @@
 		</div>
 
     <div class="input-field">
-      <select #roleSelect formControlName="role">
+      <select #roleSelect (change)="selectionChange()" formControlName="role">
         <option value="" disabled selected>Choose role</option>
         <option value="user">User</option>
         <option value="masseuse">Masseuse</option>
         <option value="admin">Admin</option>
       </select>
       <label>Role</label>
+    </div>
+
+    <div class="input-field" [ngClass]="{'hidden': !isMasseuse, 'unhidden': isMasseuse}">
+      <select #masseuseSelect formControlName="masseuse">
+        <option value="" disabled selected>Choose masseuse</option>
+        <option *ngFor="let masseuse of masseuses" value="{{masseuse._id}}">{{masseuse.name}}</option>
+      </select>
+      <label>Masseuse</label>
     </div>
 	</div>
 	<div class="modal-footer">

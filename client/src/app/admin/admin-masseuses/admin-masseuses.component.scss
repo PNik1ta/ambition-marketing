@@ -18,18 +18,6 @@
 	}
 }
 
-.hidden {
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.3s ease 0s;
-}
-
-.unHidden {
-  height: 100%;
-  opacity: 1;
-}
-
 main {
 	padding: 20px;
 }
@@ -64,4 +52,9 @@ nav {
 			float: left;
 		}
 	}
+}
+
+
+.dn {
+  display: none;
 }

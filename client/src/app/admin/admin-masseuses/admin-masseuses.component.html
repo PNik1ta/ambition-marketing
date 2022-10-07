@@ -1,0 +1,89 @@
+<!--BREADCRUMBS-->
+<nav>
+	<div class="nav-wrapper">
+		<a routerLink="main" class="breadcrumb">Admin</a>
+		<a routerLink="masseuses" class="breadcrumb">Masseuses</a>
+	</div>
+</nav>
+
+<button class="waves-effect waves-light btn modal-trigger btn-yellow right-btn" (click)="openAddModal()">Add
+	account</button>
+<div *ngIf="!isLoading">
+	<div class="table-container">
+		<table class="highlight" *ngIf="masseuses.length !== 0; else empty">
+			<thead>
+				<th>#</th>
+        <th>Name</th>
+				<th>Prices</th>
+				<th></th>
+			</thead>
+
+			<tbody>
+				<tr *ngFor="let masseuse of masseuses; let i = index;">
+					<td>{{i + 1}}</td>
+					<td>{{masseuse.name}}</td>
+					<td>{{masseuse.prices}}</td>
+					<td class="delete"><i class="material-icons" (click)="removeMasseuse(masseuse._id!)">delete</i></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<ng-template #empty>
+		<h5 class="center">No accounts there...</h5>
+	</ng-template>
+</div>
+
+<app-loader *ngIf="isLoading"></app-loader>
+
+
+
+<form #addModal class="modal" [formGroup]="form" (ngSubmit)="addMasseuse()">
+	<div class="modal-content">
+		<h4>Add masseuse</h4>
+		<div class="input-field">
+			<input formControlName="name" id="name" type="text" class="validate"
+				[ngClass]="{'invalid': Name!.invalid && Name!.touched}">
+
+			<label for="name">Name</label>
+
+			<span class="helper-text red-text" *ngIf="Name?.invalid && Name?.touched">
+				<span *ngIf="Name?.hasError('required')">Name can't be empty</span>
+			</span>
+		</div>
+
+		<div class="input-field">
+			<input formControlName="prices" id="prices" type="text" class="validate"
+				[ngClass]="{'invalid': Prices?.invalid && Prices?.touched }">
+
+			<label for="prices">Prices</label>
+
+			<span class="helper-text red-text"
+				*ngIf="Prices?.invalid && Prices?.touched">
+				<span *ngIf="Prices?.hasError('required')">Prices can't be empty</span>
+			</span>
+		</div>
+
+    <div class="input-field" (click)="handleClick()">
+			<input id="file-text" type="text" class="validate">
+
+      <input type="file" id="photos" formControlName="photos" class="dn" (change)="addAttachment($event)" id="upload-file"
+        [ngClass]="{'invalid': Photos?.invalid && Photos?.touched }" multiple>
+
+			<label for="photos">Photos</label>
+
+			<span class="helper-text red-text"
+				*ngIf="Photos?.invalid && Photos?.touched">
+				<span *ngIf="Photos?.hasError('required')">Photos can't be empty</span>
+			</span>
+		</div>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" (click)="closeAddModal()" [disabled]="form.disabled"
+			class="modal-close waves-effect waves-green btn-flat">Close</button>
+		<button type="submit" [disabled]="form.disabled || form.invalid"
+			class="modal-close waves-effect waves-green btn btn-yellow">Save</button>
+	</div>
+</form>

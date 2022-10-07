@@ -1,41 +1,13 @@
-<div class="massages">
-  <div class="massage">
-    <img src="/assets/images/news-example.jfif" alt="news example">
+<div class="massages" *ngIf="massages$ | async as massages; else loader">
+  <div class="massage" *ngFor="let massage of massages">
+    <img [src]="apiUrl + '/static/' + massage.previewImg" alt="massage icon">
     <div class="content">
-      <h3>Massage title</h3>
-      <button>{{'SHOW_MORE' | translate}}</button>
-    </div>
-  </div>
-
-  <div class="massage">
-    <img src="/assets/images/news-example.jfif" alt="news example">
-    <div class="content">
-      <h3>Massage title</h3>
-      <button>{{'SHOW_MORE' | translate}}</button>
-    </div>
-  </div>
-
-  <div class="massage">
-    <img src="/assets/images/news-example.jfif" alt="news example">
-    <div class="content">
-      <h3>Massage title</h3>
-      <button>{{'SHOW_MORE' | translate}}</button>
-    </div>
-  </div>
-
-  <div class="massage">
-    <img src="/assets/images/news-example.jfif" alt="news example">
-    <div class="content">
-      <h3>Massage title</h3>
-      <button>{{'SHOW_MORE' | translate}}</button>
-    </div>
-  </div>
-
-  <div class="massage">
-    <img src="/assets/images/news-example.jfif" alt="news example">
-    <div class="content">
-      <h3>Massage title</h3>
-      <button>{{'SHOW_MORE' | translate}}</button>
+      <h3>{{massage.name}}</h3>
+      <button (click)="showMore(massage)">{{'SHOW_MORE' | translate}}</button>
     </div>
   </div>
 </div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

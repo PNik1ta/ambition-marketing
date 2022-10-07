@@ -10,10 +10,10 @@
         <a routerLink="Masseuses">{{'MASSEUSES' | translate}}</a>
         <a routerLink="Massages">{{'MASSAGES' | translate}}</a>
         <a routerLink="News">{{'NEWS' | translate}}</a>
-        <a routerLink="Profile">{{'PROFILE' | translate}}</a>
+        <a routerLink="Profile" *ngIf="isLogin">{{'PROFILE' | translate}}</a>
         <a routerLink="Register">{{'REGISTER' | translate}}</a>
         <a routerLink="Login">{{'LOGIN' | translate}}</a>
-        <a routerLink="Login">{{'LOGOUT' | translate}}</a>
+        <a (click)="logout()">{{'LOGOUT' | translate}}</a>
     </div>
 
     <div class="links-burger" [ngClass]="{'active': isActive}">
@@ -23,7 +23,7 @@
         <a routerLink="Profile">{{'PROFILE' | translate}}</a>
         <a routerLink="Register">{{'REGISTER' | translate}}</a>
         <a routerLink="Login">{{'LOGIN' | translate}}</a>
-        <a routerLink="Login">{{'LOGOUT' | translate}}</a>
+        <a (click)="logout()">{{'LOGOUT' | translate}}</a>
     </div>
 
     <div class="burger-wrapper" (click)="open()">

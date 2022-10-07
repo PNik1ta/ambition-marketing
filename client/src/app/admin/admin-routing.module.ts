@@ -9,6 +9,7 @@ import { AdminAccountComponent } from './admin-account/admin-account.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AdminMasseusesComponent } from './admin-masseuses/admin-masseuses.component';
 
 const routes: Routes = [
   { path: '', component: AdminLoginComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path: 'news', component: AdminNewsComponent },
     { path: 'news/add', component: AdminNewsAddComponent },
     { path: 'news/:id' , component: AdminNewsDetailComponent },
-    { path: 'news/edit/:id', component: AdminNewsEditComponent }
+    { path: 'news/edit/:id', component: AdminNewsEditComponent },
+    { path: 'masseuses', component: AdminMasseusesComponent }
   ]}
 ]
 

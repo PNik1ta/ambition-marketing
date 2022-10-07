@@ -15,4 +15,16 @@ export class FileService {
     let url: string = '/api/files/upload';
     return this.http.post<IFileElementResponse[]>(url, fd);
   }
+
+  uploadMultiple(images: File[]): Observable<IFileElementResponse[]> {
+    const fd = new FormData();
+
+    for(let image of images) {
+      fd.append('files', image);
+    }
+
+    let url: string = '/api/files/upload-multiple';
+    
+    return this.http.post<IFileElementResponse[]>(url, fd);
+  }
 }

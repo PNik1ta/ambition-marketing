@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +9,31 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   isActive: boolean;
+  isLogin: boolean;
 
-  constructor() {
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.isActive = false;
+
+    if(auth.isAuthenticated()) {
+      this.isLogin = true;
+    }
+
+    else {
+      this.isLogin = false;
+    }
   }
 
   open(): void {
     this.isActive = !this.isActive;
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.isLogin = false;
+    this.router.navigate(['Login']);
+
   }
 }

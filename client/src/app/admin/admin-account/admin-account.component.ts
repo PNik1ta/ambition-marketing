@@ -6,6 +6,8 @@ import { IAccount } from './../../core/models/IAccount';
 import { Observable } from 'rxjs';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IMasseuse } from 'src/app/core/models/IMasseuse';
+import { MasseuseService } from 'src/app/core/services/masseuse.service';
 
 @Component({
   selector: 'app-admin-account',
@@ -18,11 +20,17 @@ export class AdminAccountComponent implements OnInit, AfterViewInit {
 
   @ViewChild('addModal') addModalRef!: ElementRef;
   @ViewChild('roleSelect') roleSelectRef!: ElementRef;
+  @ViewChild('masseuseSelect') masseuseSelectRef!: ElementRef;
 
   addModal!: MaterialInstance;
   roleSelect!: MaterialInstance;
+  masseuseSelect!: MaterialInstance;
+
+  isMasseuse: boolean;
 
   addForm: FormGroup;
+
+  masseuses: IMasseuse[];
 
   get Email() { return this.addForm.get('email') }
 
@@ -32,38 +40,57 @@ export class AdminAccountComponent implements OnInit, AfterViewInit {
 
   get Role() { return this.addForm.get('role') }
 
+  get Masseuse() { return this.addForm.get('masseuse'); }
+
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private masseuseService: MasseuseService
   ) {
     this.addForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(4)]),
       username: new FormControl('', [Validators.required]),
-      role: new FormControl('', [Validators.required])
+      role: new FormControl('', [Validators.required]),
+      masseuse: new FormControl('')
     });
 
     this.accounts$ = new Observable();
+
+    this.isMasseuse = false;
+
+    this.masseuses = [];
   }
 
   ngAfterViewInit(): void {
     this.addModal = MaterialService.initModal(this.addModalRef);
     this.roleSelect = MaterialService.initSelect(this.roleSelectRef);
+
+    setTimeout(() => {
+      this.masseuseSelect = MaterialService.initSelect(this.masseuseSelectRef);
+    }, 1000);
+
   }
 
   ngOnInit(): void {
     this.getAccounts();
+    this.getMasseuses();
   }
 
   removeAccount(email: string): void {
-    console.log(email);
     this.accountService.delete(email).subscribe((res: BaseResponse<IAccount>) => {
       MaterialService.toast(res.message);
       this.getAccounts();
     });
   }
 
-  getAccounts() {
+  getAccounts(): void {
     this.accounts$ = this.accountService.findAll();
+  }
+
+  getMasseuses(): void {
+    this.masseuseService.findAll().subscribe((res: IMasseuse[]) => {
+      this.masseuses = res;
+    });
   }
 
   openAddModal(): void {
@@ -74,10 +101,20 @@ export class AdminAccountComponent implements OnInit, AfterViewInit {
 		this.addModal.close!();
 	}
 
+  selectionChange(): void {
+    if(this.Role?.value === 'masseuse') {
+      this.isMasseuse = true;
+    }
+
+    else {
+      this.isMasseuse = false;
+    }
+  }
+
   addAccount(): void {
     this.addForm.disable();
 
-    const registerDto = new RegisterDto(this.Email?.value, this.Password?.value, this.Username?.value, this.Role?.value);
+    const registerDto = new RegisterDto(this.Email?.value, this.Password?.value, this.Username?.value, this.Role?.value, this.Masseuse?.value);
 
     this.accountService.create(registerDto).subscribe((res: BaseResponse<IAccount>) => {
       MaterialService.toast(res.message);

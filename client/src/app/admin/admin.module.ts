@@ -13,6 +13,7 @@ import { AdminNewsAddComponent } from './admin-news-add/admin-news-add.component
 import { AdminNewsDetailComponent } from './admin-news-detail/admin-news-detail.component';
 import { QuillModule } from 'ngx-quill';
 import { AdminNewsEditComponent } from './admin-news-edit/admin-news-edit.component';
+import { AdminMasseusesComponent } from './admin-masseuses/admin-masseuses.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { AdminNewsEditComponent } from './admin-news-edit/admin-news-edit.compon
     AdminNewsComponent,
     AdminNewsAddComponent,
     AdminNewsDetailComponent,
-    AdminNewsEditComponent
+    AdminNewsEditComponent,
+    AdminMasseusesComponent
   ]
 })
 export class AdminModule {
