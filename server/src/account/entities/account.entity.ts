@@ -18,6 +18,8 @@ export class AccountEntity implements IAccount {
     rt?: string;
     ratedUsersId?: string[];
     masseuseId?: string;
+    likedNews?: string[];
+    likedMasseuses?: string[];
     
     constructor(account: IAccount) {
         this._id = account._id;
@@ -35,6 +37,8 @@ export class AccountEntity implements IAccount {
         this.ratesCount = account.ratesCount;
         this.ratedUsersId = account.ratedUsersId;
         this.masseuseId = account.masseuseId;
+        this.likedNews = account.likedNews;
+        this.likedMasseuses = account.likedMasseuses;
     }
 
     public async setPassword(password: string): Promise<AccountEntity> {

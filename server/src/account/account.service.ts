@@ -8,6 +8,8 @@ import { Injectable } from "@nestjs/common";
 import { CreateAccountDto } from './dto/create-account.dto';
 import { Account } from './models/account.model';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { UpdateLikedNewsDto } from './dto/update-liked-news.dto';
+import { UpdateLikedMasseuseDto } from './dto/update-liked-masseuse.dto';
 
 @Injectable()
 export class AccountService {
@@ -79,6 +81,22 @@ export class AccountService {
 		accountEntity.age = dto.age;
 
 		const updatedAccount = this.accountRepository.update(accountEntity);
+		if (!updatedAccount) {
+			throw new Error(ACCOUNT_UPDATE_ERROR);
+		}
+		return new BaseResponse<Account>(ACCOUNT_UPDATED);
+	}
+
+	async updateLikedNews(email: string, dto: UpdateLikedNewsDto): Promise<BaseResponse<Account>> {
+		const updatedAccount = await this.accountRepository.updateLikedNews(email, dto);
+		if (!updatedAccount) {
+			throw new Error(ACCOUNT_UPDATE_ERROR);
+		}
+		return new BaseResponse<Account>(ACCOUNT_UPDATED);
+	}
+
+	async updateLikedMasseuses(email: string, dto: UpdateLikedMasseuseDto): Promise<BaseResponse<Account>> {
+		const updatedAccount = await this.accountRepository.updateLikedMasseuses(email, dto);
 		if (!updatedAccount) {
 			throw new Error(ACCOUNT_UPDATE_ERROR);
 		}

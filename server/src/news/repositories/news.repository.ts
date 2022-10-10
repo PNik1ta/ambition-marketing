@@ -3,6 +3,7 @@ import { Model } from 'mongoose';
 import { News } from './../models/news.model';
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from '@nestjs/mongoose';
+import { UpdateLikesDto } from '../dto/update-likes.dto';
 
 @Injectable()
 export class NewsRepository {
@@ -30,5 +31,9 @@ export class NewsRepository {
 
     async update({_id, ...rest}: NewsEntity) {
         return await this.newsModel.updateOne({ _id }, { $set: { ...rest} }).exec();
+    }
+
+    async changeLike(id: string, dto: UpdateLikesDto) {
+        return await this.newsModel.updateOne({_id: id}, { $set: { ...dto }});
     }
 }

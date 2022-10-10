@@ -5,6 +5,7 @@ export class NewsEntity implements INews{
     previewImg: string;
     description: string;
     date?: Date;
+    likesCount: number;
 
     constructor(news: INews) {
         this._id = news._id;
@@ -12,5 +13,6 @@ export class NewsEntity implements INews{
         this.previewImg = news.previewImg;
         this.title = news.title;
         this.date = news.date;
+        this.likesCount = news.likesCount;
     }
 }

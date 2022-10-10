@@ -5,6 +5,7 @@ import { NewsService } from './news.service';
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from "@nestjs/common";
 import { CreateNewsDto } from './dto/create-news.dto';
 import { Public } from '../shared/decorators/public.decorator';
+import { UpdateLikesDto } from './dto/update-likes.dto';
 
 @Controller('news')
 export class NewsController {
@@ -42,5 +43,11 @@ export class NewsController {
     @HttpCode(200)
     update(@Param('id') id: string, @Body() dto: UpdateNewsDto): Promise<BaseResponse<News>> {
         return this.newsService.update(id, dto);
+    }
+
+    @Patch('change-like/:id')
+    @HttpCode(200)
+    changeLike(@Param('id') id: string, @Body() dto: UpdateLikesDto): Promise<BaseResponse<News>> {
+        return this.newsService.changeLike(id, dto);
     }
 }

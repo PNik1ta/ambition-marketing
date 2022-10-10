@@ -7,7 +7,6 @@ export class MasseuseEntity implements IMasseuse{
     commentsCount: number;
     name: string;
     likesCount: number;
-    dislikesCount: number;
 
     constructor(masseuse: IMasseuse) {
         this._id = masseuse._id;
@@ -15,5 +14,6 @@ export class MasseuseEntity implements IMasseuse{
         this.prices = masseuse.prices;
         this.commentsCount = masseuse.commentsCount;
         this.name = masseuse.name;
+        this.likesCount = masseuse.likesCount;
     }
 }

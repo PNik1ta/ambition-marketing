@@ -3,8 +3,9 @@ import { BaseResponse } from './../shared/classes/base-response';
 import { Masseuse } from './models/masseuse.model';
 import { CreateMasseuseDto } from './dto/create-masseuse.dto';
 import { MasseuseService } from './masseuse.service';
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from "@nestjs/common";
 import { Public } from '../shared/decorators/public.decorator';
+import { UpdateLikesDto } from './dto/update-likes.dto';
 
 @Controller('masseuse')
 export class MasseuseController {
@@ -38,4 +39,10 @@ export class MasseuseController {
 	async update(@Param('id') id: string, @Body() dto: UpdateMasseuseDto): Promise<BaseResponse<Masseuse>> {
 		return this.masseuseService.update(id, dto);
 	}
+
+    @Patch('change-like/:id')
+    @HttpCode(200)
+    changeLike(@Param('id') id: string, @Body() dto: UpdateLikesDto): Promise<BaseResponse<Masseuse>> {
+        return this.masseuseService.changeLike(id, dto);
+    }
 }

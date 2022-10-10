@@ -7,6 +7,7 @@ import { CreateMasseuseDto } from './dto/create-masseuse.dto';
 import { MasseuseRepository } from './repositories/masseuse.repository';
 import { Injectable } from "@nestjs/common";
 import { UpdateMasseuseDto } from './dto/update-masseuse.dto';
+import { UpdateLikesDto } from './dto/update-likes.dto';
 
 @Injectable()
 export class MasseuseService {
@@ -20,8 +21,7 @@ export class MasseuseService {
             prices: dto.prices,
             commentsCount: 0,
             name: dto.name,
-            likesCount: 0,
-            dislikesCount: 0
+            likesCount: 0
         });
 
         const createdMasseuse = await this.masseuseRepository.create(masseuse);
@@ -66,6 +66,16 @@ export class MasseuseService {
         if(!updatedMasseuse) {
             throw new Error(MASSEUSE_UPDATE_ERROR);
         }
+        return new BaseResponse<Masseuse>(MASSEUSE_UPDATED);
+    }
+
+    async changeLike(id: string, dto: UpdateLikesDto): Promise<BaseResponse<Masseuse>> {
+        const updatedNews = await this.masseuseRepository.changeLike(id, dto);
+
+        if(!updatedNews) {
+            throw new Error(MASSEUSE_UPDATE_ERROR);
+        }
+        
         return new BaseResponse<Masseuse>(MASSEUSE_UPDATED);
     }
 }

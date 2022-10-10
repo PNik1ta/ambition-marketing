@@ -15,6 +15,9 @@ export class News extends Document implements INews {
 
     @Prop({required: false})
     date?: Date;
+
+    @Prop({required: true, default: 0})
+    likesCount: number;
 }
 
 export const NewsSchema = SchemaFactory.createForClass(News);

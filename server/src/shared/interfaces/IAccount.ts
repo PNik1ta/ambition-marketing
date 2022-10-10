@@ -16,4 +16,6 @@ export interface IAccount {
     rt?: string;
     ratedUsersId?: string[];
     masseuseId?: string;
+    likedNews?: string[];
+    likedMasseuses?: string[];
 }

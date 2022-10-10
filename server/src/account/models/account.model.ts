@@ -46,6 +46,12 @@ export class Account extends Document implements IAccount {
 
     @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Masseuse'})
     masseuseId?: string;
+
+    @Prop({ required: false })
+    likedNews?: string[];
+
+    @Prop({ required: false })
+    likedMasseuses?: string[];
 }
 
 export const AccountSchema = SchemaFactory.createForClass(Account);

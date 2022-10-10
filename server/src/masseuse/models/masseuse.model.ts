@@ -18,9 +18,6 @@ export class Masseuse extends Document implements IMasseuse {
 
     @Prop({ default: 0})
     likesCount: number;
-
-    @Prop({ default: 0})
-    dislikesCount: number;
 }
 
 export const MasseuseSchema = SchemaFactory.createForClass(Masseuse);

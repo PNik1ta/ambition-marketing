@@ -3,6 +3,8 @@ import { Account } from './../models/account.model';
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from 'mongoose';
+import { UpdateLikedNewsDto } from '../dto/update-liked-news.dto';
+import { UpdateLikedMasseuseDto } from '../dto/update-liked-masseuse.dto';
 
 @Injectable()
 export class AccountRepository {
@@ -37,5 +39,13 @@ export class AccountRepository {
 
 	async updateRefreshToken(accountId: string, rt: Pick<Account, 'rt'>): Promise<void> {
 		await this.accountModel.findByIdAndUpdate(accountId, rt);
+	}
+
+	async updateLikedNews(email: string, dto: UpdateLikedNewsDto) {
+		return this.accountModel.updateOne({ email }, { $push: { likedNews: dto.newsId }});
+	}
+
+	async updateLikedMasseuses(email: string, dto: UpdateLikedMasseuseDto) {
+		return this.accountModel.updateOne({ email }, { $push: { likedMasseuses: dto.masseuseId }});
 	}
 }

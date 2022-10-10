@@ -5,5 +5,4 @@ export interface IMasseuse {
     commentsCount: number;
     name: string;
     likesCount: number;
-    dislikesCount: number;
 }
