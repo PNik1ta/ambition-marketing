@@ -18,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
     ReactiveFormsModule,
     SwiperModule,
     TranslateModule,
-    SharedModule
+    SharedModule,
+    QuillModule.forRoot()
   ],
   declarations: [
     LayoutComponent,

@@ -4,4 +4,5 @@ export interface INews {
   previewImg?: string;
   description: string;
   date?: Date;
+  likesCount: number;
 }

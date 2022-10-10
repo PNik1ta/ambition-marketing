@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { INews } from 'src/app/core/models/INews';
+import { NewsService } from 'src/app/core/services/news.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-news-page',
@@ -7,17 +12,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsPageComponent implements OnInit {
 
-  isOpened: boolean;
+  news$: Observable<INews[]>;
+  apiUrl: string;
 
-  constructor() {
-    this.isOpened = false;
+  constructor(
+    private newsService: NewsService,
+    private router: Router
+  ) {
+    this.news$ = new Observable<INews[]>();
+    this.apiUrl = environment.apiUrl;
   }
 
   ngOnInit(): void {
+    this.getNews();
   }
 
-  openComments(): void {
-    this.isOpened = !this.isOpened;
+  getNews(): void {
+    this.news$ = this.newsService.findAll();
+  }
+
+  showMore(news: INews) {
+    this.router.navigate(['News/' + news._id])
   }
 
 }

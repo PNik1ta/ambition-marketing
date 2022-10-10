@@ -5,6 +5,7 @@ import { BaseResponse } from './../models/BaseResponse';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { UpdateLikedNewsDto } from '../dto/account/update-liked-news.dto';
 
 @Injectable({ providedIn: 'root'})
 export class AccountService {
@@ -39,6 +40,11 @@ export class AccountService {
 
   update(id: string, dto: UpdateAccountDto): Observable<BaseResponse<IAccount>> {
     let url: string = '/api/account/' + id;
+    return this.http.patch<BaseResponse<IAccount>>(url, dto);
+  }
+
+  updateLikedNews(email: string, dto: UpdateLikedNewsDto): Observable<BaseResponse<IAccount>> {
+    let url: string = '/api/account/update-liked-news/' + email;
     return this.http.patch<BaseResponse<IAccount>>(url, dto);
   }
 }
