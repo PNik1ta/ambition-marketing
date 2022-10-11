@@ -11,6 +11,8 @@
 
   margin-bottom: 30px;
 
+  margin-top: 20px;
+
   @media screen and (max-width: 415px) {
     grid-template-columns: repeat(auto-fill, 300px);
   }
@@ -59,7 +61,7 @@
     }
 
     @media screen and (max-width: 415px) {
-      
+
       &:first-child {
         margin-top: 20px;
       }

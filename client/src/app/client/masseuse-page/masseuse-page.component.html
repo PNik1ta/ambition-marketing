@@ -1,104 +1,18 @@
-<div class="masseuses">
-  <div class="masseuse">
+<div class="masseuses" *ngIf="!isLoading">
+  <div class="masseuse" *ngFor="let masseuse of masseuses">
     <div class="main">
-      <img src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
+      <img [src]="apiUrl + '/static/' + masseuse.avatarImg" alt="masseuse avatar">
       <div class="content">
-        <h2>Name</h2>
-        <div class="rating">
-          <img src="/assets/icons/star.svg" alt="star icon">
-          <img src="/assets/icons/star.svg" alt="star icon">
-          <img src="/assets/icons/star.svg" alt="star icon">
-          <img src="/assets/icons/star.svg" alt="star icon">
+        <h2>{{masseuse.fullname}}</h2>
+        <div class="rating" *ngFor="let item of [].constructor(rating)">
           <img src="/assets/icons/star.svg" alt="star icon">
         </div>
       </div>
     </div>
 
-    <a>{{'SHOW_MORE' | translate}}</a>
-
-  </div>
-
-  <div class="masseuse">
-    <div class="main">
-      <img src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
-      <div class="content">
-        <h2>Name</h2>
-        <div class="rating">
-          <div class="rating">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <a>{{'SHOW_MORE' | translate}}</a>
-
-  </div>
-
-  <div class="masseuse">
-    <div class="main">
-      <img src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
-      <div class="content">
-        <h2>Name</h2>
-        <div class="rating">
-          <div class="rating">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <a>{{'SHOW_MORE' | translate}}</a>
-
-  </div>
-
-  <div class="masseuse">
-    <div class="main">
-      <img src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
-      <div class="content">
-        <h2>Name</h2>
-        <div class="rating">
-          <div class="rating">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <a>{{'SHOW_MORE' | translate}}</a>
-
-  </div>
-
-  <div class="masseuse">
-    <div class="main">
-      <img src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
-      <div class="content">
-        <h2>Name</h2>
-        <div class="rating">
-          <div class="rating">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <a>{{'SHOW_MORE' | translate}}</a>
+    <a (click)="showMore(masseuse)">{{'SHOW_MORE' | translate}}</a>
 
   </div>
 </div>
+
+<app-loader *ngIf="isLoading"></app-loader>

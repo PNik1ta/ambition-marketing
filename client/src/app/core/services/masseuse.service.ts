@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CreateMasseuseDto } from './../dto/masseuse/create-masseuse.dto';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { UpdateLikesDto } from '../dto/masseuse/update-likes.dto';
 
 @Injectable({providedIn: 'root'})
 export class MasseuseService {
@@ -35,5 +36,10 @@ export class MasseuseService {
     update(id: string,dto: UpdateMasseuseDto): Observable<BaseResponse<IMasseuse>> {
       let url: string = '/api/masseuse/' + id;
       return this.http.patch<BaseResponse<IMasseuse>>(url, dto)
+    }
+
+    changeLike(id: string, dto: UpdateLikesDto): Observable<BaseResponse<IMasseuse>> {
+      let url: string = '/api/masseuse/change-like/' + id;
+      return this.http.patch<BaseResponse<IMasseuse>>(url, dto);
     }
 }

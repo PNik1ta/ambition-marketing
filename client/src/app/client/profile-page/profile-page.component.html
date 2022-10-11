@@ -1,7 +1,7 @@
 <div class="profile" *ngIf="!isLoading">
   <div class="main">
     <div class="avatar">
-      <img src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
+      <img [src]="apiUrl + '/static/' + account.avatarImg" alt="masseuse avatar">
       <h1>{{account.fullname}}</h1>
       <div class="stars">
         <img src="/assets/icons/star.svg" alt="star icon" *ngFor="let item of [].constructor(rating)">
@@ -37,10 +37,6 @@
         <div class="rating-item">
           <img src="/assets/icons/like.svg" alt="like icon">
           <p>{{account.masseuseId?.likesCount}}</p>
-        </div>
-        <div class="rating-item">
-          <img src="/assets/icons/dislike.svg" alt="dislike icon">
-          <p>{{account.masseuseId?.dislikesCount}}</p>
         </div>
       </div>
       <div class="rating-item" (click)="openComments()">

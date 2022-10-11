@@ -54,6 +54,8 @@ export class NewsDetailPageComponent implements OnInit {
   }
 
   getNewsById(): void {
+    this.isLoading = true;
+    
     this.route.params
     .pipe(switchMap((params: Params) => {
       return this.newsService.findById(params['id']);

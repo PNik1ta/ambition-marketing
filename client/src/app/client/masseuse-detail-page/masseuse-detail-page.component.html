@@ -1,32 +1,23 @@
-<div class="masseuse">
+<div class="masseuse" *ngIf="!isLoading">
   <div class="main">
     <div class="avatar">
-      <img src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
-      <h1>Name</h1>
+      <img [src]="apiUrl + '/static/' + masseuse.avatarImg" alt="masseuse avatar">
+      <h1>{{masseuse.fullname}}</h1>
       <div class="stars">
-        <img src="/assets/icons/star.svg" alt="star icon">
-        <img src="/assets/icons/star.svg" alt="star icon">
-        <img src="/assets/icons/star.svg" alt="star icon">
-        <img src="/assets/icons/star.svg" alt="star icon">
-        <img src="/assets/icons/star.svg" alt="star icon">
+        <img src="/assets/icons/star.svg" alt="star icon" *ngFor="let item of [].constructor(rating)">
       </div>
     </div>
 
     <div class="info">
-      <h3><span>{{'EMAIL' | translate}}:</span>asdasda</h3>
-      <h3><span>{{'AGE' | translate}}: </span>asdasda</h3>
+      <h3><span>{{'EMAIL' | translate}}:</span>{{masseuse.email}}</h3>
+      <h3><span>{{'AGE' | translate}}: </span>{{masseuse.age}}</h3>
     </div>
   </div>
 
 
   <div class="about">
     <h3>{{'ABOUT_ME' | translate}}</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eligendi commodi facilis incidunt saepe quis,
-      soluta amet earum, magnam necessitatibus quaerat sequi magni atque tempora id, molestiae voluptas accusantium nobis culpa?
-      Labore alias sequi eos ratione optio adipisci, voluptates aliquam cupiditate repudiandae ipsa nihil aperiam eveniet omnis explicabo error at,
-      fugiat maiores velit maxime! Nam quibusdam nulla quisquam, inventore assumenda delectus vitae sit? Minus expedita debitis ea nisi molestias neque
-      eligendi aliquid quaerat! Quo voluptates error alias laudantium iusto! Commodi magnam eum eos vero doloribus optio ullam perferendis nihil,
-      maiores enim iste et ab asperiores nemo animi, eius placeat minus.</p>
+    <p>{{masseuse.about}}</p>
   </div>
 
   <ng-container>
@@ -34,16 +25,11 @@
   </ng-container>
   <div class="about">
     <h3>{{'PRICES' | translate}}</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur officia laboriosam minima velit natus alias, commodi obcaecati reiciendis nesciunt
-      aliquid, sequi at! Ipsum tempore facilis excepturi molestias delectus, aliquid commodi.</p>
+    <p>{{masseuse.masseuseId?.prices}}</p>
   </div>
 
   <div class="photos">
-    <img src="/assets/images/news-example.jfif" alt="news example">
-    <img src="/assets/images/news-example.jfif" alt="news example">
-    <img src="/assets/images/news-example.jfif" alt="news example">
-    <img src="/assets/images/news-example.jfif" alt="news example">
-    <img src="/assets/images/news-example.jfif" alt="news example">
+    <img [src]="apiUrl + '/static/' + photo" alt="news example" *ngFor="let photo of masseuse.masseuseId?.photos">
   </div>
 
   <hr>
@@ -51,17 +37,13 @@
   <div class="rating">
     <div class="likes">
       <div class="rating-item">
-        <img src="/assets/icons/like.svg" alt="like icon">
-        <p>340</p>
-      </div>
-      <div class="rating-item">
-        <img src="/assets/icons/dislike.svg" alt="dislike icon">
-        <p>340</p>
+        <img [src]="isLiked ? '/assets/icons/like-filled.svg' : '/assets/icons/like.svg'" alt="like icon" (click)="like()">
+        <p>{{masseuse.masseuseId?.likesCount}}</p>
       </div>
     </div>
     <div class="rating-item" (click)="openComments()">
       <img src="/assets/icons/comment.svg" alt="comment icon">
-      <p>340</p>
+      <p>{{masseuse.masseuseId?.commentsCount}}</p>
     </div>
   </div>
   <div class="comments" [ngClass]="{'active': isOpened}">
@@ -76,3 +58,5 @@
     <hr>
   </div>
 </div>
+
+<app-loader *ngIf="isLoading"></app-loader>
