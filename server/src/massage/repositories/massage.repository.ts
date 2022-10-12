@@ -3,6 +3,8 @@ import { Massage } from './../models/massage.model';
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import * as fs from 'fs';
+import { path } from 'app-root-path';
 
 @Injectable()
 export class MassageRepository {
@@ -24,6 +26,10 @@ export class MassageRepository {
     }
 
     async delete(id: string): Promise<void> {
+        const massage: Massage = await this.findById(id);
+        if(massage.previewImg && massage.previewImg !== '') {
+            fs.rmSync(`${path}/uploads/${massage.previewImg}`);
+        }
         this.massageModel.deleteOne({ _id: id}).exec();
     }
 

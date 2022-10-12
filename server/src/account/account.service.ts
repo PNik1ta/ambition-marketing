@@ -67,7 +67,7 @@ export class AccountService {
 	}
 
 	async deleteAccount(email: string): Promise<BaseResponse<Account>> {
-		this.accountRepository.delete(email);
+		const deletedAccount = this.accountRepository.delete(email);
 		return new BaseResponse<Account>(ACCOUNT_DELETED);
 	}
 

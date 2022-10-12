@@ -5,6 +5,8 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from 'mongoose';
 import { UpdateLikedNewsDto } from '../dto/update-liked-news.dto';
 import { UpdateLikedMasseuseDto } from '../dto/update-liked-masseuse.dto';
+import * as fs from 'fs';
+import { path } from 'app-root-path';
 
 @Injectable()
 export class AccountRepository {
@@ -30,6 +32,10 @@ export class AccountRepository {
 	}
 
 	async delete(email: string): Promise<void> {
+		const account = await this.findByEmail(email);
+        if(account.avatarImg && account.avatarImg !== '') {
+            fs.rmSync(`${path}/uploads/${account.avatarImg}`);
+        }
 	 	this.accountModel.deleteOne({ email }).exec();
 	}
 

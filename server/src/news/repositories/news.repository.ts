@@ -4,6 +4,8 @@ import { News } from './../models/news.model';
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from '@nestjs/mongoose';
 import { UpdateLikesDto } from '../dto/update-likes.dto';
+import * as fs from 'fs';
+import { path } from 'app-root-path';
 
 @Injectable()
 export class NewsRepository {
@@ -26,6 +28,10 @@ export class NewsRepository {
     }
 
     async delete(id: string): Promise<void> {
+        const news: News = await this.findById(id);
+        if(news.previewImg && news.previewImg !== '') {
+            fs.rmSync(`${path}/uploads/${news.previewImg}`);
+        }
         this.newsModel.deleteOne({ _id: id }).exec();
     }
 

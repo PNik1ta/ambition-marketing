@@ -18,14 +18,6 @@ export class FilesController {
 	async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<FileElementResponse[]> {
 		const saveArray: MFile[] = [new MFile(file)];
 
-		if (file.mimetype.includes('image')) {
-			const buffer = await this.filesService.convertToWebP(file.buffer);
-			saveArray.push(new MFile({
-				originalname: `${file.originalname.split('.')[0]}.webp`,
-				buffer
-			}));
-		}
-
 		return this.filesService.saveFiles(saveArray);
 	}
 
@@ -38,16 +30,7 @@ export class FilesController {
 
 		for(let file of files) {
 			saveArray.push(new MFile(file));
-
-			if (file.mimetype.includes('image')) {
-				const buffer = await this.filesService.convertToWebP(file.buffer);
-				saveArray.push(new MFile({
-					originalname: `${file.originalname.split('.')[0]}.webp`,
-					buffer
-				}));
-			}
 		}
-		
 
 		return this.filesService.saveFiles(saveArray);
 	}

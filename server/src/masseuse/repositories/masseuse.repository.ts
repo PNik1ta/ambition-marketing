@@ -4,6 +4,8 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { MasseuseEntity } from '../entities/masseuse.entity';
 import { UpdateLikesDto } from '../dto/update-likes.dto';
+import * as fs from 'fs';
+import { path } from 'app-root-path';
 
 @Injectable()
 export class MasseuseRepository {
@@ -25,6 +27,13 @@ export class MasseuseRepository {
     }
 
     async delete(id: string): Promise<void> {
+        const masseuse: Masseuse = await this.findById(id);
+        for(let image of masseuse.photos) {
+            if(image && image !== '') {
+                fs.rmSync(`${path}/uploads/${image}`);
+            }
+        }
+
         this.masseuseModel.deleteOne({_id: id}).exec();
     }
 
