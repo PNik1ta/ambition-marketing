@@ -6,51 +6,62 @@ import { Account } from './models/account.model';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { UpdateLikedNewsDto } from './dto/update-liked-news.dto';
 import { UpdateLikedMasseuseDto } from './dto/update-liked-masseuse.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('account')
+@ApiTags('account')
+@ApiBearerAuth('JWT-auth')
 export class AccountController {
     constructor(
         private readonly accountService: AccountService
     ) {}
 
     @Post()
+	@ApiBearerAuth('JWT-auth')
     async create(@Body() dto: CreateAccountDto): Promise<BaseResponse<Account>> {
         return this.accountService.createAccount(dto);
     }
 
     @Get()
+	@ApiBearerAuth('JWT-auth')
 	async findAll(): Promise<Account[]> {
 		return this.accountService.findAll();
 	}
 
 	@Get('find-by-email/:email')
+	@ApiBearerAuth('JWT-auth')
 	async findByEmail(@Param('email') email: string): Promise<Account> {
 		return this.accountService.findAccountByEmail(email);
 	}
 
 	@Get('/:id')
+	@ApiBearerAuth('JWT-auth')
 	async findById(@Param('id') id: string): Promise<Account> {
 		return this.accountService.findAccountById(id);
 	}
 
 	@Delete('/:email')
+	@ApiBearerAuth('JWT-auth')
 	async delete(@Param('email') email: string): Promise<BaseResponse<Account>> {
 		return this.accountService.deleteAccount(email);
 	}
 
 	@Patch(':id')
+	@ApiBearerAuth('JWT-auth')
 	async update(@Param('id') id: string, @Body() dto: UpdateAccountDto): Promise<BaseResponse<Account>> {
 		return this.accountService.updateAccount(id, dto);
 	}
 
 	@Patch('update-liked-news/:email')
 	@HttpCode(200)
+	@ApiBearerAuth('JWT-auth')
 	async updateLikedNews(@Param('email') email: string, @Body() dto: UpdateLikedNewsDto): Promise<BaseResponse<Account>> {
 		return this.accountService.updateLikedNews(email, dto);
 	}
 
 	@Patch('update-liked-masseuses/:email')
 	@HttpCode(200)
+	@ApiBearerAuth('JWT-auth')
 	async updateLikedMasseuses(@Param('email') email: string, @Body() dto: UpdateLikedMasseuseDto): Promise<BaseResponse<Account>> {
 		return this.accountService.updateLikedMasseuses(email, dto);
 	}

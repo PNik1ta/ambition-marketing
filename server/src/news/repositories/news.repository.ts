@@ -29,7 +29,7 @@ export class NewsRepository {
 
     async delete(id: string): Promise<void> {
         const news: News = await this.findById(id);
-        if(news.previewImg && news.previewImg !== '') {
+        if(news.previewImg || news.previewImg !== '') {
             fs.rmSync(`${path}/uploads/${news.previewImg}`);
         }
         this.newsModel.deleteOne({ _id: id }).exec();

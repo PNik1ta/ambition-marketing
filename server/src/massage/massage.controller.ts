@@ -5,8 +5,11 @@ import { MassageService } from './massage.service';
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import { UpdateMassageDto } from './dto/update-massage.dto';
 import { Public } from '../shared/decorators/public.decorator';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('massages')
+@ApiTags('massages')
+@ApiBearerAuth('JWT-auth')
 export class MassageController {
     constructor(
         private readonly massageService: MassageService
@@ -14,6 +17,7 @@ export class MassageController {
 
     @Post()
     @HttpCode(201) 
+    @ApiBearerAuth('JWT-auth')
     create(@Body() dto: CreateMassageDto): Promise<BaseResponse<Massage>> {
         return this.massageService.create(dto);
     }
@@ -34,12 +38,14 @@ export class MassageController {
 
     @Delete(':id')
     @HttpCode(200)
+    @ApiBearerAuth('JWT-auth')
     delete(@Param('id') id: string): Promise<BaseResponse<Massage>> {
         return this.massageService.delete(id);
     }
 
     @Patch(':id')
     @HttpCode(200)
+    @ApiBearerAuth('JWT-auth')
     update(@Param('id') id: string, @Body() dto: UpdateMassageDto): Promise<BaseResponse<Massage>> {
         return this.massageService.update(id, dto);
     }

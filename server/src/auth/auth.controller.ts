@@ -7,8 +7,10 @@ import { Public } from './../shared/decorators/public.decorator';
 import { Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LoginAccountDto } from "./dto/login-account.dto";
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
 
@@ -21,6 +23,7 @@ export class AuthController {
 
 	@Public()
 	@Post('login')
+	@ApiBody({ type: LoginAccountDto})
 	@HttpCode(HttpStatus.OK)
 	async login(@Body() loginAccountDto: LoginAccountDto): Promise<Tokens> {
 		return this.authService.login(loginAccountDto);

@@ -15,6 +15,9 @@ export class AccountRepository {
     ) { }
 
     async create(account: AccountEntity): Promise<Account> {
+		if(account.masseuseId === '') {
+			account.masseuseId = null;
+		}
         const newAccount = new this.accountModel(account);
         return newAccount.save();
     }
