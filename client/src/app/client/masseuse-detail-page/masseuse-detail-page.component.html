@@ -43,17 +43,32 @@
     </div>
     <div class="rating-item" (click)="openComments()">
       <img src="/assets/icons/comment.svg" alt="comment icon">
-      <p>{{masseuse.masseuseId?.commentsCount}}</p>
+      <p>{{comments.length}}</p>
     </div>
   </div>
   <div class="comments" [ngClass]="{'active': isOpened}">
-    <div class="comment">
-      <div class="user">
-        <img src="/assets/images/avatar-example.png" alt="avatar example">
-        <p>John Johnson</p>
+    <form [formGroup]="form" (ngSubmit)="writeComment()">
+      <div class="input-field">
+        <input formControlName="comment" id="comment" type="text" class="validate"
+          [ngClass]="{'invalid': Comment!.invalid && Comment!.touched}">
+
+        <label for="comment">Comment</label>
+
+        <span class="helper-text red-text" *ngIf="Comment?.invalid && Comment?.touched">
+          <span *ngIf="Comment?.hasError('required')">Comment can't be empty</span>
+        </span>
+
+        <button type="submit" [disabled]="form.disabled || form.invalid"
+          class="modal-close waves-effect waves-green btn btn-yellow">Save</button>
       </div>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, veritatis a iusto iure at enim voluptatem assumenda,
-        aliquid earum obcaecati ex dolor iste explicabo deleniti quod sequi asperiores ratione ea.</p>
+    </form>
+
+     <div class="comment" *ngFor="let comment of comments">
+      <div class="user">
+        <img [src]="apiUrl + '/static/' + comment.fromUser.avatarImg" alt="avatar example">
+        <p>{{comment.fromUser.fullname}}</p>
+      </div>
+      <p>{{comment.comment}}</p>
     </div>
     <hr>
   </div>
