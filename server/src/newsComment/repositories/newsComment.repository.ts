@@ -16,11 +16,11 @@ export class NewsCommentsRepository {
     }
 
     async findAll(): Promise<NewsComment[]> {
-        return this.newsCommentModel.find().exec();
+        return this.newsCommentModel.find().populate('fromUser').exec();
     }
 
     async findById(id: string): Promise<NewsComment> {
-        return this.newsCommentModel.findById(id).exec();
+        return this.newsCommentModel.findById(id).populate('fromUser').exec();
     }
 
     async delete(id: string): Promise<void> {

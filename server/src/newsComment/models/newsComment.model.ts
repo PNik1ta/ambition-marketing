@@ -1,10 +1,10 @@
 import { INewsComment } from '../../shared/interfaces/INewsComment';
-import { Document } from "mongoose";
+import mongoose, { Document } from "mongoose";
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema()
 export class NewsComment extends Document implements INewsComment {
-    @Prop({required: true})
+    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Account'})
     fromUser: string;
 
     @Prop({required: true})
