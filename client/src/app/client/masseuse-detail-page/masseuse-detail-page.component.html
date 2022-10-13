@@ -1,7 +1,7 @@
 <div class="masseuse" *ngIf="!isLoading">
   <div class="main">
     <div class="avatar">
-      <img [src]="apiUrl + '/static/' + masseuse.avatarImg" alt="masseuse avatar">
+      <img [src]="masseuse.avatarImg ? (apiUrl + '/static/' + masseuse.avatarImg) : '/assets/images/avatar-example.png'">
       <h1>{{masseuse.fullname}}</h1>
       <div class="stars">
         <img src="/assets/icons/star.svg" alt="star icon" *ngFor="let item of [].constructor(rating)">
@@ -11,6 +11,8 @@
     <div class="info">
       <h3><span>{{'EMAIL' | translate}}:</span>{{masseuse.email}}</h3>
       <h3><span>{{'AGE' | translate}}: </span>{{masseuse.age}}</h3>
+      <button type="button" (click)="openRateModal()"
+      class="waves-effect waves-light btn mt-20 btn-yellow rate-btn">Rate</button>
     </div>
   </div>
 
@@ -73,5 +75,30 @@
     <hr>
   </div>
 </div>
+
+<form #rateModal class="modal" [formGroup]="rateForm" (ngSubmit)="rate()">
+	<div class="modal-content">
+		<h4>Rate masseuse</h4>
+
+    <div class="input-field">
+      <select #rateSelect formControlName="rating">
+        <option value="" disabled selected>Choose rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <label>Rating</label>
+    </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" (click)="closeRateModal()" [disabled]="rateForm.disabled"
+			class="modal-close waves-effect waves-green btn-flat">Close</button>
+		<button type="submit" [disabled]="rateForm.disabled || rateForm.invalid"
+			class="modal-close waves-effect waves-green btn btn-yellow">Rate</button>
+	</div>
+</form>
+
 
 <app-loader *ngIf="isLoading"></app-loader>

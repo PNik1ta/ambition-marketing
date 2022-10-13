@@ -41,13 +41,14 @@
 
       .content {
         h2 {
-          font-size: 48px;
+          font-size: 28px;
           line-height: 1.25;
           font-family: 'madi';
           color: $pink_light;
         }
 
         .rating {
+          margin-top: 20px;
           display: flex;
           column-gap: 15px;
           align-items: center;

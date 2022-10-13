@@ -1,11 +1,11 @@
 <div class="masseuses" *ngIf="!isLoading">
   <div class="masseuse" *ngFor="let masseuse of masseuses">
     <div class="main">
-      <img [src]="apiUrl + '/static/' + masseuse.avatarImg" alt="masseuse avatar">
+      <img [src]="masseuse.avatarImg ? (apiUrl + '/static/' + masseuse.avatarImg) : '/assets/images/avatar-example.png'" alt="masseuse avatar">
       <div class="content">
-        <h2>{{masseuse.fullname}}</h2>
-        <div class="rating" *ngFor="let item of [].constructor(rating)">
-          <img src="/assets/icons/star.svg" alt="star icon">
+        <h2>{{masseuse.fullname ? masseuse.fullname : 'no fullname'}}</h2>
+        <div class="rating">
+          <img src="/assets/icons/star.svg" alt="star icon" *ngFor="let item of [].constructor(rating)">
         </div>
       </div>
     </div>

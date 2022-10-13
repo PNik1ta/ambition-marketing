@@ -51,12 +51,12 @@ export class AdminMassagesComponent implements OnInit, AfterViewInit, OnDestroy 
 
     this.addForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required)
+      description: new FormControl('', Validators.required),
     });
 
     this.changeForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required)
+      description: new FormControl('', Validators.required),
     });
   }
 

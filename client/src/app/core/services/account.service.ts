@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { UpdateLikedNewsDto } from '../dto/account/update-liked-news.dto';
 import { UpdateLikedMasseusesDto } from '../dto/account/update-liked-masseuses.dto';
+import { UpdateAvatarDto } from '../dto/account/update-avatar.dto';
+import { UpdateRatingDto } from '../dto/account/update-rating.dto';
 
 @Injectable({ providedIn: 'root'})
 export class AccountService {
@@ -51,6 +53,16 @@ export class AccountService {
 
   updateLikedMasseuses(email: string, dto: UpdateLikedMasseusesDto): Observable<BaseResponse<IAccount>> {
     let url: string = '/api/account/update-liked-masseuses/' + email;
+    return this.http.patch<BaseResponse<IAccount>>(url, dto);
+  }
+
+  updateAvatar(email: string, dto: UpdateAvatarDto): Observable<BaseResponse<IAccount>> {
+    let url: string = '/api/account/update-avatar/' + email;
+    return this.http.patch<BaseResponse<IAccount>>(url, dto);
+  }
+
+  updateRating(email: string, dto: UpdateRatingDto): Observable<BaseResponse<IAccount>> {
+    let url: string = '/api/account/update-rating/' + email;
     return this.http.patch<BaseResponse<IAccount>>(url, dto);
   }
 }

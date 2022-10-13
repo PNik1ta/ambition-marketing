@@ -11,6 +11,12 @@
     <div class="info">
       <h3><span>{{'EMAIL' | translate}}:</span>{{account.email}}</h3>
       <h3><span>{{'AGE' | translate}}: </span>{{account.age}}</h3>
+
+      <input type="file" class="dn" (change)="onFileUpload($event)" #input>
+      <button type="button" (click)="triggerClick()"
+        class="waves-effect waves-light btn mt-20 btn-yellow"><i class="material-icons left">cloud</i>Upload
+        image</button>
+
     </div>
   </div>
 

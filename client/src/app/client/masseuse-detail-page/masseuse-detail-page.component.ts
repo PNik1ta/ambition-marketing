@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { UpdateLikedMasseusesDto } from 'src/app/core/dto/account/update-liked-masseuses.dto';
+import { UpdateRatingDto } from 'src/app/core/dto/account/update-rating.dto';
 import { CreateMasseuseCommentDto } from 'src/app/core/dto/masseuse-comment/create-masseuse-comment.dto';
 import { UpdateLikesDto } from 'src/app/core/dto/masseuse/update-likes.dto';
+import { RateDto } from 'src/app/core/dto/rate.dto';
 import { BaseResponse } from 'src/app/core/models/BaseResponse';
 import { IAccount } from 'src/app/core/models/IAccount';
 import { IMasseuse } from 'src/app/core/models/IMasseuse';
@@ -12,7 +14,8 @@ import { IMasseuseComment } from 'src/app/core/models/IMasseuseComment';
 import { AccountService } from 'src/app/core/services/account.service';
 import { MasseuseService } from 'src/app/core/services/masseuse.service';
 import { MasseuseCommentService } from 'src/app/core/services/masseuseComment.service';
-import { MaterialService } from 'src/app/core/services/material.service';
+import { MaterialInstance, MaterialService } from 'src/app/core/services/material.service';
+import { RatingService } from 'src/app/core/services/rating.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,7 +23,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './masseuse-detail-page.component.html',
   styleUrls: ['./masseuse-detail-page.component.scss']
 })
-export class MasseuseDetailPageComponent implements OnInit {
+export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
 
   isOpened: boolean;
   masseuse!: IAccount;
@@ -35,13 +38,28 @@ export class MasseuseDetailPageComponent implements OnInit {
   comments: IMasseuseComment[];
   isWrite: boolean;
 
+  rateForm: FormGroup;
+
+  @ViewChild('rateModal') rateModalRef!: ElementRef;
+  @ViewChild('rateSelect') rateSelectRef!: ElementRef;
+
+  rateModal!: MaterialInstance;
+  rateSelect!: MaterialInstance;
+
+  isRated: boolean;
+
+  ratedUsers: string[];
+
   get Comment() { return this.form.get('comment'); }
+
+  get Rating() { return this.rateForm.get('rating'); }
 
   constructor(
     private route: ActivatedRoute,
     private accountService: AccountService,
     private masseuseService: MasseuseService,
-    private masseuseCommentService: MasseuseCommentService
+    private masseuseCommentService: MasseuseCommentService,
+    private ratingService: RatingService
   ) {
     this.isOpened = false;
     this.email = sessionStorage.getItem('email') ?? '';
@@ -56,13 +74,33 @@ export class MasseuseDetailPageComponent implements OnInit {
     this.form = new FormGroup({
       comment: new FormControl('', Validators.required)
     });
+
+    this.rateForm = new FormGroup({
+      rating: new FormControl('', Validators.required)
+    });
+
+    this.isRated = false;
+    this.ratedUsers = [];
   }
 
   ngOnInit(): void {
     this.getMasseuseById();
+  }
 
+  ngAfterViewInit(): void {
+    this.rateModal = MaterialService.initModal(this.rateModalRef);
+    this.rateSelect = MaterialService.initSelect(this.rateSelectRef);
+  }
+
+  openComments(): void {
+    this.isOpened = !this.isOpened;
+  }
+
+  getAccountByEmail(): void {
     this.accountService.findByEmail(this.email).subscribe((account: IAccount) => {
       this.userId = account._id!;
+      this.ratedUsers = account.ratedUsersId!;
+      this.getIsRated();
 
       for(let like of account.likedMasseuses!) {
         if(like === this.masseuse._id) {
@@ -71,10 +109,6 @@ export class MasseuseDetailPageComponent implements OnInit {
         }
       }
     });
-  }
-
-  openComments(): void {
-    this.isOpened = !this.isOpened;
   }
 
   getMasseuseById(): void {
@@ -86,9 +120,19 @@ export class MasseuseDetailPageComponent implements OnInit {
     })).subscribe((res: IAccount) => {
       this.masseuse = res;
       this.isLoading = false;
-      this.rating = Math.round(res.rating);
+      this.rating = Math.round(res.rating / res.ratesCount);
       this.getMasseuseComments();
+      this.getAccountByEmail();
     });
+  }
+
+  getIsRated(): void {
+    for(let ratedUser of this.ratedUsers) {
+      if(ratedUser === this.masseuse._id) {
+        this.isRated = true;
+        break;
+      }
+    }
   }
 
   like(): void {
@@ -119,7 +163,6 @@ export class MasseuseDetailPageComponent implements OnInit {
 
     if(this.form.valid) {
       let dto: CreateMasseuseCommentDto = new CreateMasseuseCommentDto(this.userId, this.masseuse._id!, this.Comment?.value);
-      console.log(dto);
       this.masseuseCommentService.create(dto).subscribe((res: BaseResponse<IMasseuseComment>) => {
         this.getMasseuseComments();
       });
@@ -138,5 +181,32 @@ export class MasseuseDetailPageComponent implements OnInit {
         }
       }
     })
+  }
+
+  rate(): void {
+
+    let dto: RateDto = new RateDto(this.userId, this.masseuse._id!, parseInt(this.Rating?.value));
+
+    this.ratingService.rate(dto).subscribe((res: BaseResponse<IAccount>) => {
+      MaterialService.toast(res.message);
+      this.getMasseuseById();
+    })
+
+    this.accountService.findByEmail(this.email).subscribe((account: IAccount) => {
+      this.ratedUsers = account.ratedUsersId!;
+      this.getIsRated();
+    });
+  }
+
+  openRateModal(): void {
+    if(this.isRated) {
+      MaterialService.toast('You already rated this masseuse');
+      return;
+    }
+    this.rateModal.open!();
+  }
+
+  closeRateModal(): void {
+    this.rateModal.close!();
   }
 }
