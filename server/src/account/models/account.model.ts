@@ -44,7 +44,7 @@ export class Account extends Document implements IAccount {
     @Prop()
     ratedUsersId?: string[];
 
-    @Prop({required: false, default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Masseuse'})
+    @Prop({required: false, default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Masseuse' })
     masseuseId?: string;
 
     @Prop({ required: false })

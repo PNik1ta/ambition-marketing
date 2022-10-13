@@ -7,6 +7,8 @@ import { UpdateAccountDto } from './dto/update-account.dto';
 import { UpdateLikedNewsDto } from './dto/update-liked-news.dto';
 import { UpdateLikedMasseuseDto } from './dto/update-liked-masseuse.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { UpdateAvatarDto } from './dto/update-avatar.dto';
+import { UpdateRatingDto } from './dto/update-rating.dto';
 
 @Controller('account')
 @ApiTags('account')
@@ -64,5 +66,19 @@ export class AccountController {
 	@ApiBearerAuth('JWT-auth')
 	async updateLikedMasseuses(@Param('email') email: string, @Body() dto: UpdateLikedMasseuseDto): Promise<BaseResponse<Account>> {
 		return this.accountService.updateLikedMasseuses(email, dto);
+	}
+
+	@Patch('update-avatar/:email')
+	@HttpCode(200)
+	@ApiBearerAuth('JWT-auth')
+	async updateAvatar(@Param('email') email: string, @Body() dto: UpdateAvatarDto) {
+		return this.accountService.updateAvatar(email, dto);
+	}
+
+	@Patch('update-rating/:email')
+	@HttpCode(200)
+	@ApiBearerAuth('JWT-auth')
+	async updateRating(@Param('email') email: string, @Body() dto: UpdateRatingDto) {
+		return this.accountService.updateRating(email, dto);
 	}
 }

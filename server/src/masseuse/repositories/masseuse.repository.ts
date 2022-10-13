@@ -23,7 +23,7 @@ export class MasseuseRepository {
     }
 
     async findById(id: string): Promise<Masseuse> {
-        return this.masseuseModel.findById(id).populate('userId').exec();
+        return this.masseuseModel.findById(id).exec();
     }
 
     async delete(id: string): Promise<void> {
@@ -40,8 +40,9 @@ export class MasseuseRepository {
     async update({_id, ...rest}: MasseuseEntity) {
         return this.masseuseModel.updateOne({_id}, {$set: { ...rest }}).exec();
     }
-
+    
     async changeLike(id: string, dto: UpdateLikesDto) {
         return await this.masseuseModel.updateOne({_id: id}, { $set: { ...dto }});
     }
+
 }

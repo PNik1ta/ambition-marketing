@@ -7,6 +7,8 @@ import { UpdateLikedNewsDto } from '../dto/update-liked-news.dto';
 import { UpdateLikedMasseuseDto } from '../dto/update-liked-masseuse.dto';
 import * as fs from 'fs';
 import { path } from 'app-root-path';
+import { UpdateAvatarDto } from '../dto/update-avatar.dto';
+import { UpdateRatingDto } from '../dto/update-rating.dto';
 
 @Injectable()
 export class AccountRepository {
@@ -56,5 +58,13 @@ export class AccountRepository {
 
 	async updateLikedMasseuses(email: string, dto: UpdateLikedMasseuseDto) {
 		return this.accountModel.updateOne({ email }, { $push: { likedMasseuses: dto.masseuseId }});
+	}
+
+	async updateAvatar(email: string, dto: UpdateAvatarDto) {
+		return this.accountModel.updateOne({ email }, { $set: { avatarImg: dto.avatarImg }});
+	}
+
+	async updateRating(email: string, dto: UpdateRatingDto) {
+		return this.accountModel.updateOne({ email }, { $inc: { rating: dto.rating, ratesCount: 1 }});
 	}
 }
