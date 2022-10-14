@@ -98,8 +98,10 @@ export class AdminMassagesComponent implements OnInit, AfterViewInit, OnDestroy 
 		this.addModal.close!();
 	}
 
-  openChangeModal(id: string): void {
-    this.massageId = id;
+  openChangeModal(massage: IMassage): void {
+    this.massageId = massage._id!;
+    this.ChangeName?.patchValue(massage.name);
+    this.ChangeDescription?.patchValue(massage.description);
     this.changeModal.open!();
   }
 
