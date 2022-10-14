@@ -7,17 +7,10 @@ export class UpdateNewsDto {
     @ApiProperty({
 		description: 'News title',
 		example: 'test'
-	})
+	  })
     title: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-		description: 'Massage preview image source',
-		example: 'test'
-	})
-    previewImg: string;
-
+    
     @IsString()
     @IsNotEmpty()
     @ApiProperty({
@@ -25,4 +18,12 @@ export class UpdateNewsDto {
 		example: 'test'
 	})
     description: string;
+
+    @IsString()
+    @ApiProperty({
+		description: 'Massage preview image source',
+		example: 'test'
+	})
+    previewImg?: string;
+
 }

@@ -10,6 +10,5 @@ export class UpdateMassageDto {
     description: string;
 
     @IsString()
-    @IsNotEmpty()
-    previewImg: string;
+    previewImg?: string;
 }

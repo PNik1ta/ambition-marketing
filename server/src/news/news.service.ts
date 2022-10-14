@@ -65,7 +65,10 @@ export class NewsService {
 
         const newsEntity = new NewsEntity(news);
         newsEntity.description = dto.description;
-        newsEntity.previewImg = dto.previewImg;
+
+        if(dto.previewImg) {
+            newsEntity.previewImg = dto.previewImg;
+        }
         newsEntity.title = dto.title;
 
         const updatedNews = await this.newsRepository.update(newsEntity);

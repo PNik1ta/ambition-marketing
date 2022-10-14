@@ -65,7 +65,12 @@ export class MassageService {
         const massageEntity = new MassageEntity(massage);
         massageEntity.description = dto.description;
         massageEntity.name = dto.name;
-        massageEntity.previewImg = dto.previewImg;
+
+        if(dto.previewImg) {
+            massageEntity.previewImg = dto.previewImg;
+        }
+
+        console.log(massageEntity);
 
         const updatedMassage = this.massageRepository.update(massageEntity);
 
