@@ -1,7 +1,7 @@
 <!--BREADCRUMBS-->
 <nav>
 	<div class="nav-wrapper">
-		<a routerLink="main" class="breadcrumb">Admin</a>
+		<a class="breadcrumb">Admin</a>
 		<a routerLink="massages" class="breadcrumb">Massages</a>
 	</div>
 </nav>
@@ -73,7 +73,7 @@
 	<div class="modal-footer">
 		<button type="button" (click)="closeAddModal()" [disabled]="addForm.disabled"
 			class="modal-close waves-effect waves-green btn-flat">Close</button>
-		<button type="submit" [disabled]="addForm.disabled || addForm.invalid"
+		<button type="submit" [disabled]="addForm.disabled || addForm.invalid || !image"
 			class="modal-close waves-effect waves-green btn btn-yellow">Save</button>
 	</div>
 </form>

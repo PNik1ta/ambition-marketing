@@ -25,6 +25,7 @@ export class AdminAccountComponent implements OnInit, AfterViewInit {
   addModal!: MaterialInstance;
   roleSelect!: MaterialInstance;
   masseuseSelect!: MaterialInstance;
+  email: string;
 
   isMasseuse: boolean;
 
@@ -54,6 +55,8 @@ export class AdminAccountComponent implements OnInit, AfterViewInit {
       masseuse: new FormControl('')
     });
 
+    this.email = localStorage.getItem('email') ?? '';
+
     this.accounts$ = new Observable();
 
     this.isMasseuse = false;
@@ -77,6 +80,11 @@ export class AdminAccountComponent implements OnInit, AfterViewInit {
   }
 
   removeAccount(email: string): void {
+    if(email === this.email) {
+      MaterialService.toast("You can't delete thyself");
+      return;
+    }
+    
     this.accountService.delete(email).subscribe((res: BaseResponse<IAccount>) => {
       MaterialService.toast(res.message);
       this.getAccounts();

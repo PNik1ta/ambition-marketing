@@ -88,9 +88,12 @@ export class AdminMasseusesComponent implements OnInit, AfterViewInit {
 
   addAttachment(fileInput: any) {
     if (fileInput.target.files.length !== 0) {
-      const fileName = fileInput.target.files[0];
+      const fileName = fileInput.target.files;
+
       if (fileName) {
-        (document.getElementById('file-text')! as HTMLInputElement).value = fileName.name;
+        for(let i = 0; i < fileName.length; i++) {
+          (document.getElementById('file-text')! as HTMLInputElement).value += `${fileName[i].name}, `;
+        }
       }
 
       for(let i = 0; i < this.getFiles()!.length; i++) {

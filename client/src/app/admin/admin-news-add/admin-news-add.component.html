@@ -1,7 +1,7 @@
 <!--BREADCRUMBS-->
 <nav>
 	<div class="nav-wrapper">
-		<a routerLink="main" class="breadcrumb">Admin</a>
+		<a class="breadcrumb">Admin</a>
 		<a routerLink="../../news" class="breadcrumb">News</a>
 		<a routerLink="../add" class="breadcrumb">Add news</a>
 	</div>
@@ -37,7 +37,7 @@
 
 	<div class="save">
 		<button type="submit" class="modal-close waves-effect waves-green btn btn-yellow"
-			[disabled]="addForm.disabled || addForm.invalid">Save</button>
+			[disabled]="addForm.disabled || addForm.invalid || !image">Save</button>
 	</div>
 
 </form>

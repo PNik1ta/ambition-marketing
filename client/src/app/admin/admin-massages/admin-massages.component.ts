@@ -161,24 +161,37 @@ export class AdminMassagesComponent implements OnInit, AfterViewInit, OnDestroy 
 
     let imageUrl: string = '';
 
-    this.fileService.upload(this.image!).subscribe(
-      (res: IFileElementResponse[]) => {
-        imageUrl = res[0].url;
+    if(this.image) {
+      this.fileService.upload(this.image!).subscribe(
+        (res: IFileElementResponse[]) => {
+          imageUrl = res[0].url;
 
-        let dto: UpdateMassageDto = new UpdateMassageDto(this.ChangeName?.value, this.ChangeDescription?.value, imageUrl);
-        this.massageService.update(this.massageId, dto).subscribe((res: BaseResponse<IMassage>) => {
-          MaterialService.toast(res.message);
-          this.getMassages();
-        });
-      },
+          let dto: UpdateMassageDto = new UpdateMassageDto(this.ChangeName?.value, this.ChangeDescription?.value, imageUrl);
+          this.massageService.update(this.massageId, dto).subscribe((res: BaseResponse<IMassage>) => {
+            MaterialService.toast(res.message);
+            this.getMassages();
+          });
+        },
 
-      error => {
-        MaterialService.toast(error);
-      },
+        error => {
+          MaterialService.toast(error);
+        },
 
-      () => {
-        this.changeCompleted();
-      }
-    )
+        () => {
+          this.changeCompleted();
+        }
+      )
+    }
+
+    else {
+      let dto: UpdateMassageDto = new UpdateMassageDto(this.ChangeName?.value, this.ChangeDescription?.value);
+
+      this.massageService.update(this.massageId, dto).subscribe((res: BaseResponse<IMassage>) => {
+        MaterialService.toast(res.message);
+        this.getMassages();
+      });
+    }
+
+
   }
 }

@@ -66,15 +66,25 @@ export class AdminNewsEditComponent implements OnInit {
 			}));
 
     this.news$.subscribe(currentNews => {
-      this.fileService.upload(this.image!).subscribe((res: IFileElementResponse[]) => {
-        let previewImgUrl: string = res[0].url;
-        let dto: UpdateNewsDto = new UpdateNewsDto(this.Title?.value, previewImgUrl, this.Text?.value);
+      if(this.image) {
+        this.fileService.upload(this.image!).subscribe((res: IFileElementResponse[]) => {
+          let previewImgUrl: string = res[0].url;
+          let dto: UpdateNewsDto = new UpdateNewsDto(this.Title?.value, this.Text?.value, previewImgUrl);
 
-        this.newsService.update(currentNews._id!, dto).subscribe((res: BaseResponse<INews>) => {
-          MaterialService.toast(res.message);
-          this.router.navigate(['/admin/main/news']);
+          this.newsService.update(currentNews._id!, dto).subscribe((res: BaseResponse<INews>) => {
+            MaterialService.toast(res.message);
+            this.router.navigate(['/admin/main/news']);
+          });
         });
-      })
+      } else {
+        let dto: UpdateNewsDto = new UpdateNewsDto(this.Title?.value, this.Text?.value);
+
+          this.newsService.update(currentNews._id!, dto).subscribe((res: BaseResponse<INews>) => {
+            MaterialService.toast(res.message);
+            this.router.navigate(['/admin/main/news']);
+          });
+      }
+
     })
   }
 }

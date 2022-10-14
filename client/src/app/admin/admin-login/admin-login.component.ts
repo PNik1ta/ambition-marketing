@@ -44,15 +44,18 @@ export class AdminLoginComponent implements OnInit {
 
     this.authService.login(dto).subscribe((res: ITokens) => {
       const user: IAccount = jwt_decode(res.access_token);
+      localStorage.setItem('email', this.Email?.value);
 
       if(user.role === Role.ADMIN) {
         this.router.navigate(['/admin/main/accounts']);
       }
-      
+
       else {
         MaterialService.toast("Not accepted. Your role isn't admin");
         this.authService.logout();
       }
+    }, () => {
+      MaterialService.toast('Incorrect email or password');
     });
 
   }
