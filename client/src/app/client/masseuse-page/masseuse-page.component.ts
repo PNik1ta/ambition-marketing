@@ -18,7 +18,7 @@ export class MasseusePageComponent implements OnInit {
   masseuses: IAccount[];
   apiUrl: string;
   isLoading: boolean;
-  rating: number;
+  ratings: number[];
 
   constructor(
     private accountService: AccountService,
@@ -27,7 +27,7 @@ export class MasseusePageComponent implements OnInit {
     this.apiUrl = environment.apiUrl;
     this.masseuses = [];
     this.isLoading = false;
-    this.rating = 0;
+    this.ratings = [];
   }
 
   ngOnInit(): void {
@@ -41,7 +41,8 @@ export class MasseusePageComponent implements OnInit {
       for (let account of accounts) {
         if(account.role === Role.MASSEUSE) {
           this.masseuses.push(account);
-          this.rating = Math.round(account.rating);
+          let rating: number = Math.round(account.rating / account.ratesCount);
+          this.ratings.push(rating);
         }
       }
 

@@ -34,76 +34,23 @@
   </div>
 </div>
 
-<div class="masseuses">
+<div class="masseuses" *ngIf="!isLoading">
   <h2>{{'OUR_MASSEUSES' | translate}}</h2>
   <swiper class="swiper" #swiper [config]="config">
-    <ng-template swiperSlide>
+
+    <ng-template swiperSlide *ngFor="let masseuse of masseuses; let i = index;">
       <div class="masseuse">
-        <img class="avatar" src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
+        <img class="avatar" [src]="masseuse.avatarImg ? (apiUrl + '/static/' + masseuse.avatarImg) : '/assets/images/avatar-example.png'" alt="masseuse avatar">
         <div class="info">
-          <h3>Indiana Johns</h3>
+          <h3>{{masseuse.fullname}}</h3>
           <div class="rating">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
+            <img src="/assets/icons/star.svg" alt="star icon" *ngFor="let item of [].constructor(ratings[i])">
           </div>
-          <button>{{'SHOW_MORE' | translate}}</button>
+          <button (click)="showMoreMasseuse(masseuse)">{{'SHOW_MORE' | translate}}</button>
         </div>
       </div>
     </ng-template>
 
-    <ng-template swiperSlide>
-      <div class="masseuse">
-        <img class="avatar" src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
-        <div class="info">
-          <h3>Indiana Johns</h3>
-          <div class="rating">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-          </div>
-          <button>{{'SHOW_MORE' | translate}}</button>
-        </div>
-      </div>
-    </ng-template>
-
-    <ng-template swiperSlide>
-      <div class="masseuse">
-        <img class="avatar" src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
-        <div class="info">
-          <h3>Indiana Johns</h3>
-          <div class="rating">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-          </div>
-          <button>{{'SHOW_MORE' | translate}}</button>
-        </div>
-      </div>
-    </ng-template>
-
-    <ng-template swiperSlide>
-      <div class="masseuse">
-        <img class="avatar" src="/assets/images/masseuse-avatar.webp" alt="masseuse avatar">
-        <div class="info">
-          <h3>Indiana Johns</h3>
-          <div class="rating">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-            <img src="/assets/icons/star.svg" alt="star icon">
-          </div>
-          <button>{{'SHOW_MORE' | translate}}</button>
-        </div>
-      </div>
-    </ng-template>
   </swiper>
 
   <button class="prev" (click)="slidePrev()">
@@ -112,58 +59,20 @@
   <button class="next" (click)="slideNext()"><div class="arrow-right"></div></button>
 </div>
 
-<div class="news">
+<div class="news" *ngIf="!isLoading">
   <h2>{{'LAST_NEWS' | translate}}</h2>
   <swiper class="swiper-news" #swiperNews [config]="config" [centeredSlides]="true">
-    <ng-template swiperSlide>
+
+    <ng-template swiperSlide *ngFor="let news of latestNews">
       <div class="news-item">
-        <img src="/assets/images/news-example.jfif" alt="news example">
+        <img [src]="apiUrl + '/static/' + news.previewImg" alt="news example">
         <div class="content">
-          <h3>News title</h3>
-          <button>{{'SHOW_MORE' | translate}}</button>
+          <h3>{{news.title}}</h3>
+          <button (click)="showMoreNews(news)">{{'SHOW_MORE' | translate}}</button>
         </div>
       </div>
     </ng-template>
 
-    <ng-template swiperSlide>
-      <div class="news-item">
-        <img src="/assets/images/news-example.jfif" alt="news example">
-        <div class="content">
-          <h3>News title</h3>
-          <button>{{'SHOW_MORE' | translate}}</button>
-        </div>
-      </div>
-    </ng-template>
-
-    <ng-template swiperSlide>
-      <div class="news-item">
-        <img src="/assets/images/news-example.jfif" alt="news example">
-        <div class="content">
-          <h3>News title</h3>
-          <button>{{'SHOW_MORE' | translate}}</button>
-        </div>
-      </div>
-    </ng-template>
-
-    <ng-template swiperSlide>
-      <div class="news-item">
-        <img src="/assets/images/news-example.jfif" alt="news example">
-        <div class="content">
-          <h3>News title</h3>
-          <button>{{'SHOW_MORE' | translate}}</button>
-        </div>
-      </div>
-    </ng-template>
-
-    <ng-template swiperSlide>
-      <div class="news-item">
-        <img src="/assets/images/news-example.jfif" alt="news example">
-        <div class="content">
-          <h3>News title</h3>
-          <button>{{'SHOW_MORE' | translate}}</button>
-        </div>
-      </div>
-    </ng-template>
   </swiper>
 
   <button class="prev" (click)="slideNewsPrev()">
@@ -174,3 +83,5 @@
     <div class="arrow-right"></div>
   </button>
 </div>
+
+<app-loader *ngIf="isLoading"></app-loader>
