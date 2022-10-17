@@ -9,6 +9,7 @@ import * as fs from 'fs';
 import { path } from 'app-root-path';
 import { UpdateAvatarDto } from '../dto/update-avatar.dto';
 import { UpdateRatingDto } from '../dto/update-rating.dto';
+import { UpdateInformationDto } from '../dto/update-information.dto';
 
 @Injectable()
 export class AccountRepository {
@@ -66,5 +67,9 @@ export class AccountRepository {
 
 	async updateRating(email: string, dto: UpdateRatingDto) {
 		return this.accountModel.updateOne({ email }, { $inc: { rating: dto.rating, ratesCount: 1 }});
+	}
+
+	async updateInformation(email: string, dto: UpdateInformationDto) {
+		return this.accountModel.updateOne({ email }, { $set: { about: dto.about, fullname: dto.fullname }});
 	}
 }

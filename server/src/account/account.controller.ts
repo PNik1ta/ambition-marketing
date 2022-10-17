@@ -9,6 +9,8 @@ import { UpdateLikedMasseuseDto } from './dto/update-liked-masseuse.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UpdateAvatarDto } from './dto/update-avatar.dto';
 import { UpdateRatingDto } from './dto/update-rating.dto';
+import { UpdateInformationDto } from './dto/update-information.dto';
+import { Public } from '../shared/decorators/public.decorator';
 
 @Controller('account')
 @ApiTags('account')
@@ -26,18 +28,21 @@ export class AccountController {
 
     @Get()
 	@ApiBearerAuth('JWT-auth')
+	@Public()
 	async findAll(): Promise<Account[]> {
 		return this.accountService.findAll();
 	}
 
 	@Get('find-by-email/:email')
 	@ApiBearerAuth('JWT-auth')
+	@Public()
 	async findByEmail(@Param('email') email: string): Promise<Account> {
 		return this.accountService.findAccountByEmail(email);
 	}
 
 	@Get('/:id')
 	@ApiBearerAuth('JWT-auth')
+	@Public()
 	async findById(@Param('id') id: string): Promise<Account> {
 		return this.accountService.findAccountById(id);
 	}
@@ -80,5 +85,12 @@ export class AccountController {
 	@ApiBearerAuth('JWT-auth')
 	async updateRating(@Param('email') email: string, @Body() dto: UpdateRatingDto) {
 		return this.accountService.updateRating(email, dto);
+	}
+
+	@Patch('update-information/:email')
+	@HttpCode(200)
+	@ApiBearerAuth('JWT-auth')
+	async updateInformation(@Param('email') email: string, @Body() dto: UpdateInformationDto) {
+		return this.accountService.updateInformation(email, dto);
 	}
 }

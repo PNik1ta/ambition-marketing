@@ -12,6 +12,7 @@ import { UpdateLikedNewsDto } from './dto/update-liked-news.dto';
 import { UpdateLikedMasseuseDto } from './dto/update-liked-masseuse.dto';
 import { UpdateAvatarDto } from './dto/update-avatar.dto';
 import { UpdateRatingDto } from './dto/update-rating.dto';
+import { UpdateInformationDto } from './dto/update-information.dto';
 
 @Injectable()
 export class AccountService {
@@ -115,6 +116,14 @@ export class AccountService {
 
 	async updateRating(email: string, dto: UpdateRatingDto): Promise<BaseResponse<Account>> {
 		const updatedAccount = await this.accountRepository.updateRating(email, dto);
+		if (!updatedAccount) {
+			throw new Error(ACCOUNT_UPDATE_ERROR);
+		}
+		return new BaseResponse<Account>(ACCOUNT_UPDATED);
+	}
+
+	async updateInformation(email: string, dto: UpdateInformationDto): Promise<BaseResponse<Account>> {
+		const updatedAccount = await this.accountRepository.updateInformation(email, dto);
 		if (!updatedAccount) {
 			throw new Error(ACCOUNT_UPDATE_ERROR);
 		}
