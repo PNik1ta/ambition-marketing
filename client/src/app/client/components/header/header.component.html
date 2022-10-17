@@ -11,9 +11,9 @@
         <a routerLink="Massages">{{'MASSAGES' | translate}}</a>
         <a routerLink="News">{{'NEWS' | translate}}</a>
         <a routerLink="Profile" *ngIf="isLogin">{{'PROFILE' | translate}}</a>
-        <a routerLink="Register">{{'REGISTER' | translate}}</a>
-        <a routerLink="Login">{{'LOGIN' | translate}}</a>
-        <a (click)="logout()">{{'LOGOUT' | translate}}</a>
+        <a class="register-btn" *ngIf="!isAuthenticated" routerLink="Register">{{'REGISTER' | translate}}</a>
+        <a class="register-btn" *ngIf="!isAuthenticated" routerLink="Login">{{'LOGIN' | translate}}</a>
+        <a (click)="logout()" *ngIf="isAuthenticated">{{'LOGOUT' | translate}}</a>
     </div>
 
     <div class="links-burger" [ngClass]="{'active': isActive}">

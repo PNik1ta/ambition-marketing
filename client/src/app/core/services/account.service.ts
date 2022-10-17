@@ -9,6 +9,7 @@ import { UpdateLikedNewsDto } from '../dto/account/update-liked-news.dto';
 import { UpdateLikedMasseusesDto } from '../dto/account/update-liked-masseuses.dto';
 import { UpdateAvatarDto } from '../dto/account/update-avatar.dto';
 import { UpdateRatingDto } from '../dto/account/update-rating.dto';
+import { UpdateInformationDto } from '../dto/account/update-information.dto';
 
 @Injectable({ providedIn: 'root'})
 export class AccountService {
@@ -63,6 +64,11 @@ export class AccountService {
 
   updateRating(email: string, dto: UpdateRatingDto): Observable<BaseResponse<IAccount>> {
     let url: string = '/api/account/update-rating/' + email;
+    return this.http.patch<BaseResponse<IAccount>>(url, dto);
+  }
+
+  updateInformation(email: string, dto: UpdateInformationDto): Observable<BaseResponse<IAccount>> {
+    let url: string = '/api/account/update-information/' + email;
     return this.http.patch<BaseResponse<IAccount>>(url, dto);
   }
 }

@@ -10,6 +10,7 @@ import { IAccount } from 'src/app/core/models/IAccount';
 import { INews } from 'src/app/core/models/INews';
 import { INewsComment } from 'src/app/core/models/INewsComment';
 import { AccountService } from 'src/app/core/services/account.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { MaterialService } from 'src/app/core/services/material.service';
 import { NewsService } from 'src/app/core/services/news.service';
 import { NewsCommentService } from 'src/app/core/services/newsComment.service';
@@ -34,6 +35,8 @@ export class NewsDetailPageComponent implements OnInit {
 
   comments: INewsComment[];
 
+  isAuthenticated: boolean;
+
   isWrite: boolean;
 
   get Comment() { return this.form.get('comment'); }
@@ -43,16 +46,18 @@ export class NewsDetailPageComponent implements OnInit {
     private newsService: NewsService,
     private newsCommentsService: NewsCommentService,
     private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private authService: AuthService
   ) {
     this.isOpened = false;
     this.isLoading = true;
     this.apiUrl = environment.apiUrl;
-    this.email = sessionStorage.getItem('email') ?? '';
+    this.email = localStorage.getItem('email') ?? '';
     this.isLiked = false;
     this.userId = '';
     this.comments = [];
     this.isWrite = false;
+    this.isAuthenticated = false;
 
     this.form = new FormGroup({
       comment: new FormControl('', Validators.required)
@@ -61,10 +66,10 @@ export class NewsDetailPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNewsById();
-
+    this.isAuthenticated = this.authService.isAuthenticated();
     this.accountService.findByEmail(this.email).subscribe((account: IAccount) => {
       this.userId = account._id!;
-      
+
       for(let like of account.likedNews!) {
         if(like === this.news._id) {
           this.isLiked = true;
@@ -96,6 +101,10 @@ export class NewsDetailPageComponent implements OnInit {
       MaterialService.toast('This news already liked!');
       return;
     }
+    if(!this.isAuthenticated) {
+      MaterialService.toast('You must login for making likes');
+      return;
+    }
     else {
       let updateLikedNewsDto: UpdateLikedNewsDto = new UpdateLikedNewsDto(this.news._id!);
       this.accountService.updateLikedNews(this.email, updateLikedNewsDto).subscribe((res: BaseResponse<IAccount>) => {
@@ -120,7 +129,6 @@ export class NewsDetailPageComponent implements OnInit {
 
     if(this.form.valid) {
       let dto: CreateNewsCommentDto = new CreateNewsCommentDto(this.userId, this.news._id!, this.Comment?.value);
-      console.log(dto);
       this.newsCommentsService.create(dto).subscribe((res: BaseResponse<INewsComment>) => {
         this.getNewsComments();
       });

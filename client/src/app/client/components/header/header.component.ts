@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -7,9 +7,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isActive: boolean;
   isLogin: boolean;
+  isAuthenticated: boolean;
 
   constructor(
     private auth: AuthService,
@@ -24,6 +25,11 @@ export class HeaderComponent {
     else {
       this.isLogin = false;
     }
+    this.isAuthenticated = false;
+  }
+
+  ngOnInit(): void {
+    this.isAuthenticated = this.auth.isAuthenticated();
   }
 
   open(): void {
@@ -34,6 +40,5 @@ export class HeaderComponent {
     this.auth.logout();
     this.isLogin = false;
     this.router.navigate(['Login']);
-
   }
 }

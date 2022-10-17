@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="comments" [ngClass]="{'active': isOpened}">
-    <form [formGroup]="form" (ngSubmit)="writeComment()">
+    <form [formGroup]="form" (ngSubmit)="writeComment()" *ngIf="isAuthenticated">
       <div class="input-field">
         <input formControlName="comment" id="comment" type="text" class="validate"
           [ngClass]="{'invalid': Comment!.invalid && Comment!.touched}">
@@ -41,8 +41,8 @@
 
     <div class="comment" *ngFor="let comment of comments">
       <div class="user">
-        <img [src]="apiUrl + '/static/' + comment.fromUser.avatarImg" alt="avatar example">
-        <p>{{comment.fromUser.fullname}}</p>
+        <img [src]="comment.fromUser.avatarImg ? (apiUrl + '/static/' + comment.fromUser.avatarImg) : '/assets/images/avatar-example.png'" alt="avatar example">
+        <p>{{comment.fromUser.username}}</p>
       </div>
       <p>{{comment.comment}}</p>
     </div>

@@ -1,8 +1,8 @@
 <div class="profile" *ngIf="!isLoading">
   <div class="main">
     <div class="avatar">
-      <img [src]="apiUrl + '/static/' + account.avatarImg" alt="masseuse avatar">
-      <h1>{{account.fullname}}</h1>
+      <img [src]="account.avatarImg ? (apiUrl + '/static/' + account.avatarImg) : '/assets/images/avatar-example.png'" alt="masseuse avatar">
+      <h1>{{account.fullname ? account.fullname : 'no fullname'}}</h1>
       <div class="stars">
         <img src="/assets/icons/star.svg" alt="star icon" *ngFor="let item of [].constructor(rating)">
       </div>
@@ -12,10 +12,14 @@
       <h3><span>{{'EMAIL' | translate}}:</span>{{account.email}}</h3>
       <h3><span>{{'AGE' | translate}}: </span>{{account.age}}</h3>
 
-      <input type="file" class="dn" (change)="onFileUpload($event)" #input>
-      <button type="button" (click)="triggerClick()"
-        class="waves-effect waves-light btn mt-20 btn-yellow"><i class="material-icons left">cloud</i>Upload
-        image</button>
+      <div class="buttons">
+        <input type="file" class="dn" (change)="onFileUpload($event)" #input>
+        <button type="button" (click)="triggerClick()"
+          class="waves-effect waves-light btn mt-20 btn-yellow"><i class="material-icons left">cloud</i>Upload
+          image</button>
+        <button type="button" (click)="openChangeModal()"
+          class="waves-effect waves-light btn mt-20 btn-yellow">Change information</button>
+      </div>
 
     </div>
   </div>
@@ -45,7 +49,7 @@
           <p>{{account.masseuseId?.likesCount}}</p>
         </div>
       </div>
-      <div class="rating-item" (click)="openComments()">
+      <div class="rating-item rating-comments" (click)="openComments()">
         <img src="/assets/icons/comment.svg" alt="comment icon">
         <p>{{accountComments.length}}</p>
       </div>
@@ -53,7 +57,7 @@
     <div class="comments" [ngClass]="{'active': isOpened}">
       <div class="comment" *ngFor="let comment of accountComments">
         <div class="user">
-          <img [src]="apiUrl + '/static/' + comment.fromUser.avatarImg" alt="avatar example">
+          <img [src]="account.avatarImg ? (apiUrl + '/static/' + account.avatarImg) : '/assets/images/avatar-example.png'" alt="avatar example">
           <p>{{comment.fromUser.username}}</p>
         </div>
         <p>{{comment.comment}}</p>
@@ -62,5 +66,36 @@
     </div>
   </ng-container>
 </div>
+
+<form #changeModal class="modal" [formGroup]="form" (ngSubmit)="changeInformation()">
+	<div class="modal-content">
+		<h4>Change information</h4>
+		<div class="input-field">
+			<input formControlName="fullname" id="fullname" type="text" class="validate"
+				[ngClass]="{'invalid': Fullname!.invalid && Fullname!.touched}">
+			<label for="fullname">Full name</label>
+			<span class="helper-text red-text" *ngIf="Fullname?.invalid && Fullname?.touched">
+				<span *ngIf="Fullname?.hasError('required')">Full name can't be empty</span>
+			</span>
+		</div>
+
+		<div class="input-field">
+			<input formControlName="description" id="description" type="text" class="validate"
+				[ngClass]="{'invalid': Description?.invalid && Description?.touched }">
+			<label for="description">Description</label>
+			<span class="helper-text red-text"
+				*ngIf="Description?.invalid && Description?.touched">
+				<span *ngIf="Description?.hasError('required')">Description can't be empty</span>
+			</span>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" (click)="closeChangeModal()" [disabled]="form.disabled"
+			class="modal-close waves-effect waves-green btn-flat">Close</button>
+		<button type="submit" [disabled]="form.disabled || form.invalid"
+			class="modal-close waves-effect waves-green btn btn-yellow">Save</button>
+	</div>
+</form>
 
 <app-loader *ngIf="isLoading"></app-loader>

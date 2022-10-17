@@ -12,6 +12,7 @@ import { IAccount } from 'src/app/core/models/IAccount';
 import { IMasseuse } from 'src/app/core/models/IMasseuse';
 import { IMasseuseComment } from 'src/app/core/models/IMasseuseComment';
 import { AccountService } from 'src/app/core/services/account.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { MasseuseService } from 'src/app/core/services/masseuse.service';
 import { MasseuseCommentService } from 'src/app/core/services/masseuseComment.service';
 import { MaterialInstance, MaterialService } from 'src/app/core/services/material.service';
@@ -50,6 +51,8 @@ export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
 
   ratedUsers: string[];
 
+  isAuthenticated: boolean;
+
   get Comment() { return this.form.get('comment'); }
 
   get Rating() { return this.rateForm.get('rating'); }
@@ -59,10 +62,11 @@ export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
     private accountService: AccountService,
     private masseuseService: MasseuseService,
     private masseuseCommentService: MasseuseCommentService,
-    private ratingService: RatingService
+    private ratingService: RatingService,
+    private authService: AuthService
   ) {
     this.isOpened = false;
-    this.email = sessionStorage.getItem('email') ?? '';
+    this.email = localStorage.getItem('email') ?? '';
     this.isLoading = false;
     this.isLiked = false;
     this.apiUrl = environment.apiUrl;
@@ -81,10 +85,14 @@ export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
 
     this.isRated = false;
     this.ratedUsers = [];
+
+    this.isAuthenticated = false;
   }
 
   ngOnInit(): void {
     this.getMasseuseById();
+
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   ngAfterViewInit(): void {
@@ -99,6 +107,7 @@ export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
   getAccountByEmail(): void {
     this.accountService.findByEmail(this.email).subscribe((account: IAccount) => {
       this.userId = account._id!;
+
       this.ratedUsers = account.ratedUsersId!;
       this.getIsRated();
 
@@ -121,8 +130,8 @@ export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
       this.masseuse = res;
       this.isLoading = false;
       this.rating = Math.round(res.rating / res.ratesCount);
-      this.getMasseuseComments();
       this.getAccountByEmail();
+      this.getMasseuseComments();
     });
   }
 
@@ -140,6 +149,11 @@ export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
       MaterialService.toast('This masseuse already liked!');
       return;
     }
+    if(!this.isAuthenticated) {
+      MaterialService.toast('You must login to make likes');
+      return;
+    }
+
     else {
       let updateLikedMasseusesDto: UpdateLikedMasseusesDto = new UpdateLikedMasseusesDto(this.masseuse._id!);
       this.accountService.updateLikedMasseuses(this.email, updateLikedMasseusesDto).subscribe((res: BaseResponse<IAccount>) => {
@@ -156,6 +170,7 @@ export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
   }
 
   writeComment(): void {
+
     if(this.isWrite) {
       MaterialService.toast('You already wrote a comment');
       return;
@@ -173,9 +188,9 @@ export class MasseuseDetailPageComponent implements OnInit, AfterViewInit {
     this.masseuseCommentService.findAll().subscribe((comments: IMasseuseComment[]) => {
       for(let comment of comments) {
         if(comment.masseuse === this.masseuse._id) {
+
           this.comments.push(comment);
         }
-
         if(comment.fromUser._id === this.userId) {
           this.isWrite = true;
         }

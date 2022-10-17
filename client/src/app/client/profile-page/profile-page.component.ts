@@ -1,19 +1,16 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UpdateAvatarDto } from 'src/app/core/dto/account/update-avatar.dto';
+import { UpdateInformationDto } from 'src/app/core/dto/account/update-information.dto';
 import { Role } from 'src/app/core/enums/Role';
 import { BaseResponse } from 'src/app/core/models/BaseResponse';
 import { IAccount } from 'src/app/core/models/IAccount';
 import { IFileElementResponse } from 'src/app/core/models/IFileElement.response';
-import { IMassage } from 'src/app/core/models/IMassage';
-import { IMasseuse } from 'src/app/core/models/IMasseuse';
 import { IMasseuseComment } from 'src/app/core/models/IMasseuseComment';
 import { AccountService } from 'src/app/core/services/account.service';
 import { FileService } from 'src/app/core/services/file.service';
-import { MasseuseService } from 'src/app/core/services/masseuse.service';
 import { MasseuseCommentService } from 'src/app/core/services/masseuseComment.service';
-import { MaterialService } from 'src/app/core/services/material.service';
+import { MaterialInstance, MaterialService } from 'src/app/core/services/material.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -21,7 +18,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss']
 })
-export class ProfilePageComponent implements OnInit {
+export class ProfilePageComponent implements OnInit, AfterViewInit {
 
   email: string;
   account!: IAccount;
@@ -39,7 +36,15 @@ export class ProfilePageComponent implements OnInit {
   accountComments: IMasseuseComment[];
 
   @ViewChild('input') inputRef!: ElementRef;
+  @ViewChild('changeModal') changeModalRef!: ElementRef;
+
+  changeModal!: MaterialInstance;
+  form: FormGroup;
   image?: File;
+
+  get Fullname() { return this.form.get('fullname'); }
+
+  get Description() { return this.form.get('description'); }
 
   constructor(
     private accountService: AccountService,
@@ -47,7 +52,7 @@ export class ProfilePageComponent implements OnInit {
     private fileService: FileService
   ) {
     this.isOpened = false;
-    this.email = sessionStorage.getItem('email')!;
+    this.email = localStorage.getItem('email')!;
     this.masseuseRole = Role.MASSEUSE;
 
     this.apiUrl = environment.apiUrl;
@@ -59,11 +64,20 @@ export class ProfilePageComponent implements OnInit {
     this.comments = [];
 
     this.accountComments = [];
+
+    this.form = new FormGroup({
+      fullname: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required)
+    });
   }
 
   ngOnInit(): void {
     this.getAccount();
     this.getMasseuseComments();
+  }
+
+  ngAfterViewInit(): void {
+    this.changeModal = MaterialService.initModal(this.changeModalRef);
   }
 
   triggerClick(): void {
@@ -88,7 +102,7 @@ export class ProfilePageComponent implements OnInit {
     this.accountService.findByEmail(this.email).subscribe((res: IAccount) => {
       this.account = res;
       this.isLoading = false;
-      this.rating = Math.round(this.account.rating);
+      this.rating = Math.round(this.account.rating / this.account.ratesCount);
     });
   }
 
@@ -101,7 +115,7 @@ export class ProfilePageComponent implements OnInit {
 
   findMasseuseComments(): void {
     for(let comment of this.comments) {
-      if ( comment.masseuse === this.account.masseuseId?._id ) {
+      if ( comment.masseuse === this.account._id ) {
         this.accountComments.push(comment);
       }
     }
@@ -109,6 +123,26 @@ export class ProfilePageComponent implements OnInit {
 
   openComments(): void {
     this.isOpened = !this.isOpened;
+  }
+
+  closeChangeModal(): void {
+    this.changeModal.close!();
+  }
+
+  openChangeModal() {
+    this.changeModal.open!();
+  }
+
+  changeInformation(): void {
+    if(this.form.valid) {
+      let dto: UpdateInformationDto = new UpdateInformationDto(this.Fullname?.value, this.Description?.value);
+
+      this.accountService.updateInformation(this.email, dto).subscribe((res: BaseResponse<IAccount>) => {
+        MaterialService.toast(res.message);
+        this.getAccount();
+      })
+    }
+
   }
 
 }
